@@ -5,9 +5,10 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavComponent } from './nav/nav.component';
 import { CheckoutBuilderComponent } from './checkout-builder/checkout-builder.component';
-import { CheckoutDemoComponent } from './checkout-demo/checkout-demo.component';
+import { CheckoutDemoComponent, SafePipe } from './checkout-demo/checkout-demo.component';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { ToggelSwitchComponent } from './toggel-switch/toggel-switch.component';
+import { MainCheckoutComponent } from './main-checkout/main-checkout.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,9 @@ import { ToggelSwitchComponent } from './toggel-switch/toggel-switch.component';
     NavComponent,
     CheckoutBuilderComponent,
     CheckoutDemoComponent,
-    ToggelSwitchComponent
+    ToggelSwitchComponent,
+    MainCheckoutComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,

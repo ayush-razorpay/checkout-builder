@@ -11,10 +11,7 @@ export class CheckoutBuilderComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  color = '#76988d';
-  model = {
-    left: true,
-    middle: false,
-    right: false
-  };
+
+  active=1;
+
 }
