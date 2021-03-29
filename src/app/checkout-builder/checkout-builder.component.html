@@ -1,0 +1,130 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+            <div class="row">
+                <div class="col-6">
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-sm">key Id</span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Small"
+                            aria-describedby="inputGroup-sizing-sm">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-sm">image</span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Small"
+                            aria-describedby="inputGroup-sizing-sm">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-sm">amount</span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Small"
+                            aria-describedby="inputGroup-sizing-sm">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-sm">currency</span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Small"
+                            aria-describedby="inputGroup-sizing-sm">
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="input-group mb-12">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                        </div>
+                        <select class="custom-select" id="inputGroupSelect01">
+                            <option selected value="order_id">order_id</option>
+                            <option value="invoice_id">invoice_id</option>
+                            <option value="subscription_id">subscription_id</option>
+                            <option value="payment_link_id">payment_link_id</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-sm">Name</span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Small"
+                            aria-describedby="inputGroup-sizing-sm">
+                    </div>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-6">
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-sm">Theme Color</span>
+                        </div>
+                        <input [(colorPicker)]="color" class="form-control" aria-label="Small" aria-describedby=""
+                            [style.background]="color">
+
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="input-group mb-12">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                        </div>
+                        <select class="custom-select" id="inputGroupSelect01">
+                            <option selected value="Javascript_callback">Javascript_callback</option>
+                            <option value="Callback_Url">Callback_Url</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row ">
+                <div class="col-6">
+                    <div class="input-group mb-12">
+                        <div class="input-group-prepend">
+                           Description
+                        </div>
+                        <textarea id="w3review" name="w3review" rows="1" cols="25">
+                           </textarea>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="input-group mb-12">
+                        <div class="input-group-prepend">
+                            Notes
+                        </div>
+                        <textarea id="w3review" name="w3review" rows="1" cols="25">
+                               </textarea>
+                    </div>
+                </div>
+            </div>
+
+            <br/>
+<div class="row">
+    <app-toggel-switch name =  "retry"> </app-toggel-switch>
+    <app-toggel-switch name =  "retry1"></app-toggel-switch>
+    <app-toggel-switch name =  "retry2"></app-toggel-switch>
+</div>
+
+
+        </div>
+
+    </div>
+</div>
