@@ -9,6 +9,7 @@ import { CheckoutDemoComponent, SafePipe } from './checkout-demo/checkout-demo.c
 import { ColorPickerModule } from 'ngx-color-picker';
 import { ToggelSwitchComponent } from './toggel-switch/toggel-switch.component';
 import { MainCheckoutComponent } from './main-checkout/main-checkout.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,8 @@ import { MainCheckoutComponent } from './main-checkout/main-checkout.component';
     BrowserModule,
     NgbModule,
     ColorPickerModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [ToggelSwitchComponent],
   bootstrap: [AppComponent]

@@ -26,5 +26,9 @@ export class ToggelSwitchComponent implements OnInit, OnDestroy{
   @Input() desc : string = "use this to descibe your toggel";
   @Input() name : string = "toggel name";
 
+  public getIsEnabled(){
+    return this.isEnbaled;
+  }
+
 
 }
