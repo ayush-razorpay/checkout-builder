@@ -5,6 +5,7 @@ import { DemoServiceService } from '../checkout-demo/service/demo-service.servic
 import { RzpCheckout } from '../model/RzpCheckout';
 import { ToggelSwitchComponent } from '../toggel-switch/toggel-switch.component';
 
+
 @Component({
   selector: 'app-main-checkout',
   templateUrl: './main-checkout.component.html',
@@ -22,9 +23,12 @@ export class MainCheckoutComponent implements OnInit {
       rzpCheckout = this.mainForm.value;
 
       console.log(rzpCheckout);
-      //if(rzpCheckout != null)
+      if(rzpCheckout != null)
+      {
+     
       this.demoServiceService.updateDemoComponent(rzpCheckout);
 
+      }
     });
 
   }
@@ -37,10 +41,10 @@ export class MainCheckoutComponent implements OnInit {
 
   mainForm = new FormGroup({
 
-    key : new FormControl(''),
+    key : new FormControl('rzp_test_oJPbj9rC1rDGAQ'),
     image : new FormControl(''),
-    amount:new FormControl(''),
-    currency : new FormControl(''),
+    amount:new FormControl('100'),
+    currency : new FormControl('INR'),
     name: new FormControl(''),
     notes : new FormControl(''),
     entityType:new FormControl(''),
