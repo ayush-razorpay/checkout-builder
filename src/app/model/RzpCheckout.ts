@@ -18,6 +18,11 @@ export class RzpCheckout{
     recurringPaytm:boolean;
     remeberCustomer:boolean;
 
+
+    theme:{
+        color:string;
+    }
+
     constructor() {}
     
 }

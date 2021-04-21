@@ -63,7 +63,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-sm">Theme Color</span>
                         </div>
-                        <input [(colorPicker)]="color" class="form-control" aria-label="Small" aria-describedby=""
+                        <input [(colorPicker)]="color" [(ngModel)] = 'color' class="form-control" aria-label="Small" aria-describedby=""
                             [style.background]="color" formControlName="color" />
                     </div>
                 </div>
@@ -156,10 +156,6 @@
                 <div class="col">
                     <app-toggel-switch name="remeber_customer" > </app-toggel-switch>
                 </div>
-                <!-- <div class="col">
-                    <app-toggel-switch name="jj"> </app-toggel-switch>
-                </div> -->
-
             </div>
         </div>
     </div>
