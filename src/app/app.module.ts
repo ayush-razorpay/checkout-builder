@@ -10,6 +10,7 @@ import { ColorPickerModule } from 'ngx-color-picker';
 import { ToggelSwitchComponent } from './toggel-switch/toggel-switch.component';
 import { MainCheckoutComponent } from './main-checkout/main-checkout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DemoServiceService } from './checkout-demo/service/demo-service.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [ToggelSwitchComponent],
+  providers: [ToggelSwitchComponent,DemoServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,7 @@
 import { QueryList, ViewChildren } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { DemoServiceService } from '../checkout-demo/service/demo-service.service';
 import { RzpCheckout } from '../model/RzpCheckout';
 import { ToggelSwitchComponent } from '../toggel-switch/toggel-switch.component';
 
@@ -11,7 +12,7 @@ import { ToggelSwitchComponent } from '../toggel-switch/toggel-switch.component'
 })
 export class MainCheckoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(private demoServiceService:DemoServiceService) { }
 
   ngOnInit(): void {
 
@@ -21,6 +22,8 @@ export class MainCheckoutComponent implements OnInit {
       rzpCheckout = this.mainForm.value;
 
       console.log(rzpCheckout);
+      //if(rzpCheckout != null)
+      this.demoServiceService.updateDemoComponent(rzpCheckout);
 
     });
 
