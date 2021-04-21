@@ -1,6 +1,8 @@
+import { QueryList, ViewChildren } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { RzpCheckout } from '../model/RzpCheckout';
+import { ToggelSwitchComponent } from '../toggel-switch/toggel-switch.component';
 
 @Component({
   selector: 'app-main-checkout',
@@ -12,12 +14,23 @@ export class MainCheckoutComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
+    let rzpCheckout : RzpCheckout;
+    this.mainForm.valueChanges.subscribe(() => {
+
+      rzpCheckout = this.mainForm.value;
+
+      console.log(rzpCheckout);
+
+    });
+
   }
   color = '#76988d';
   active = 1;
 
+  @ViewChildren(ToggelSwitchComponent) private toogelSwitchList: QueryList<ToggelSwitchComponent>;
+ 
   model : RzpCheckout = new RzpCheckout();
-
 
   mainForm = new FormGroup({
 
@@ -38,6 +51,7 @@ export class MainCheckoutComponent implements OnInit {
     personalization:new FormControl(''),
     recurringPaytm:new FormControl(''),
     remeberCustomer:new FormControl(''),
+  
   });
 
 }
