@@ -55,7 +55,7 @@ export class MainCheckoutComponent implements OnInit {
   mainForm = new FormGroup({
 
     key : new FormControl('rzp_test_oJPbj9rC1rDGAQ'),
-    image : new FormControl(''),
+    image : new FormControl('https://s24402.pcdn.co/wp-content/uploads/2020/03/Razorpay.jpg'),
     amount:new FormControl('100'),
     currency : new FormControl('INR'),
     name: new FormControl(''),
