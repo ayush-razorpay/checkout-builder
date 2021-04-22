@@ -9,7 +9,7 @@ import { RzpCheckout } from 'src/app/model/RzpCheckout';
 export class DemoServiceService {
 
 
-  private urlChangeSubject  : Subject<string> = new Subject<string>();
+  public urlChangeSubject  : Subject<string> = new Subject<string>();
 
 
   getValue(): Observable<string> {
@@ -29,7 +29,7 @@ export class DemoServiceService {
   
   let x=  JSON.stringify(r)
 
-   this.checkoutUrl='https://ayush-razorpay.github.io/ayush-razorpay/test.html?data='+encodeURI(x);
+   this.checkoutUrl='https://ayush-razorpay.github.io/ayush-razorpay/test.html?'+'request_identifier='+Math.random()+'&data='+encodeURI(x);
 
    console.log("------",this.checkoutUrl);
    this.setValue(this.checkoutUrl);

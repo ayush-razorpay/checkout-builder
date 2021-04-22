@@ -1,4 +1,4 @@
-import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer } from "@angular/platform-browser";
 import { DemoServiceService } from './service/demo-service.service';
 
@@ -11,12 +11,21 @@ import { DemoServiceService } from './service/demo-service.service';
 
 export class CheckoutDemoComponent implements OnInit {
 
-  constructor(sanitizer: DomSanitizer,private s:DemoServiceService) { }
- private url=this.s.checkoutUrl;
+  constructor(private sanitizer: DomSanitizer,
+    private s:DemoServiceService,
+    private changeRef : ChangeDetectorRef) { }
+  url="https://razorpay.com/";
   ngOnInit(): void {
 
     this.s.getValue().subscribe((value) => {
+
+     
       this.url = value;
+  
+      console.log("value change detected");
+
+
+
     });
   }
 
