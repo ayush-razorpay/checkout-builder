@@ -2,6 +2,7 @@ import { QueryList, ViewChildren } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { DemoServiceService } from '../checkout-demo/service/demo-service.service';
+import { CheckoutModelTheme } from '../model/CheckoutModalTheme';
 import { RzpCheckout } from '../model/RzpCheckout';
 import { ToggelSwitchComponent } from '../toggel-switch/toggel-switch.component';
 
@@ -15,6 +16,8 @@ export class MainCheckoutComponent implements OnInit {
 
   constructor(private demoServiceService:DemoServiceService) { }
 
+  entityType : string;
+
   ngOnInit(): void {
 
     let rzpCheckout : RzpCheckout;
@@ -22,11 +25,21 @@ export class MainCheckoutComponent implements OnInit {
 
       rzpCheckout = this.mainForm.value;
 
+      this.entityType=rzpCheckout.entityType;
+
+      let x : CheckoutModelTheme = new CheckoutModelTheme() ;
+
+      x.color=rzpCheckout.color;
+
+      
+
+      rzpCheckout.theme=x;
       console.log(rzpCheckout);
       if(rzpCheckout != null)
       {
      
-      this.demoServiceService.updateDemoComponent(rzpCheckout);
+       let var1= RzpCheckout.pack(rzpCheckout);
+      this.demoServiceService.updateDemoComponent(var1);
 
       }
     });

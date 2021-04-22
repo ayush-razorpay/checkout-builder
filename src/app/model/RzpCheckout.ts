@@ -1,3 +1,5 @@
+import { CheckoutModelTheme } from "./CheckoutModalTheme";
+
 export class RzpCheckout{
 
     key : string;
@@ -19,10 +21,12 @@ export class RzpCheckout{
     remeberCustomer:boolean;
 
 
-    theme:{
-        color:string;
-    }
+    theme:CheckoutModelTheme;
 
     constructor() {}
-    
+
+    public static pack(obj:RzpCheckout):any{
+        obj[obj.entityType]=obj.entityId;
+        return obj;
+    }
 }
