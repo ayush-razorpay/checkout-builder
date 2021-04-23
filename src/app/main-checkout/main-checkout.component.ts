@@ -4,6 +4,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { DemoServiceService } from '../checkout-demo/service/demo-service.service';
 import { CheckoutModelTheme } from '../model/CheckoutModalTheme';
 import { RzpCheckout } from '../model/RzpCheckout';
+import { PaymentBlockComponent } from '../payment-blocks/payment-block/payment-block.component';
+import { PaymentBlockInterface } from '../payment-blocks/PaymentBlocksInterface';
 import { ToggelSwitchComponent } from '../toggel-switch/toggel-switch.component';
 
 
@@ -15,6 +17,12 @@ import { ToggelSwitchComponent } from '../toggel-switch/toggel-switch.component'
 export class MainCheckoutComponent implements OnInit {
 
   constructor(private demoServiceService:DemoServiceService) { }
+ 
+  dynamicSubBlock: PaymentBlockInterface;
+  type: string;
+  id: string;
+  public isCollapsed: boolean;
+ 
 
   entityType : string;
 
@@ -73,5 +81,7 @@ export class MainCheckoutComponent implements OnInit {
     remeberCustomer:new FormControl(''),
   
   });
+
+
 
 }

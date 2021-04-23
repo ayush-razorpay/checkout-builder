@@ -9,6 +9,8 @@ import { RzpCheckout } from 'src/app/model/RzpCheckout';
 export class DemoServiceService {
 
 
+  configcheckoutObject : any;
+
   public urlChangeSubject  : Subject<string> = new Subject<string>();
 
 
@@ -25,13 +27,29 @@ export class DemoServiceService {
   constructor(private c:ApplicationRef) { }
 
   updateDemoComponent(r : RzpCheckout){
-
   
-  let x=  JSON.stringify(r)
+    this.configcheckoutObject=r;
+  let x=  JSON.stringify(this.configcheckoutObject)
 
    this.checkoutUrl='https://ayush-razorpay.github.io/ayush-razorpay/test.html?'+'request_identifier='+Math.random()+'&data='+encodeURI(x);
 
    console.log("------",this.checkoutUrl);
+
+   this.setValue(this.checkoutUrl);
+
+  }
+
+
+  updateDemoComponentConfig(r : any){
+  
+    this.configcheckoutObject.config= r;
+
+  let x=  JSON.stringify(this.configcheckoutObject)
+
+   this.checkoutUrl='https://ayush-razorpay.github.io/ayush-razorpay/test.html?'+'request_identifier='+Math.random()+'&data='+encodeURI(x);
+
+   console.log("------",this.checkoutUrl);
+   
    this.setValue(this.checkoutUrl);
 
   }
