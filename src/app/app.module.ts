@@ -16,7 +16,8 @@ import { BlockBuilderComponent } from './block-builder/block-builder.component';
 import { CardBlockComponent } from './payment-blocks/card-block/card-block.component';
 import { NetbankingBlockComponent } from './payment-blocks/netbanking-block/netbanking-block.component';
 import { PaymentBlockComponent } from './payment-blocks/payment-block/payment-block.component';
-
+import { FormlyModule } from '@ngx-formly/core';
+import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,7 @@ import { PaymentBlockComponent } from './payment-blocks/payment-block/payment-bl
     BlockBuilderComponent,
     CardBlockComponent,
     NetbankingBlockComponent,
-    PaymentBlockComponent
+    PaymentBlockComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,6 +39,9 @@ import { PaymentBlockComponent } from './payment-blocks/payment-block/payment-bl
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    FormlyModule.forRoot(),
+    FormlyBootstrapModule
     
   ],
   providers: [ToggelSwitchComponent,DemoServiceService],
