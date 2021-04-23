@@ -137,16 +137,16 @@ export class CardBlockComponent implements OnInit,PaymentBlockInterface {
 
  let toReturnObj = {
   method : 'card',
-  issuers: new Array(),
-  networks: new Array(),
-  types: new Array(),
+  issuers:  this.model.issuers,
+  networks: this.model.networks,
+  types:this.model.types,
  };
 
- Array.prototype.push.apply(toReturnObj.issuers, this.model.issuers);
+//  Array.prototype.push.apply(toReturnObj.issuers, this.model.issuers);
  
- Array.prototype.push.apply(toReturnObj.networks, this.model.networks);
+//  Array.prototype.push.apply(toReturnObj.networks, this.model.networks);
  
- Array.prototype.push.apply(toReturnObj.types, this.model.types);
+//  Array.prototype.push.apply(toReturnObj.types, this.model.types);
  
 
     return toReturnObj;

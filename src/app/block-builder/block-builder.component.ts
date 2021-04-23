@@ -46,15 +46,43 @@ export class BlockBuilderComponent implements OnInit {
     this.dynamicInsert.toArray().forEach((x) => temp.push(x.getConfJsob()));
 
     let var1 = {
-      config: {
+      // config: {
         display: {
           blocks: {
             hdfc: {
+              //nameforHDFCblockname: "Pay using HDFC Bank",
               instruments: temp
             },
+            other: {
+              //nameforotherblockname: "Other Payment modes",
+              instruments: [
+                {
+                  method: "card",
+                  issuers: [
+                    "ICIC"
+                  ]
+                },
+                {
+                  method: 'netbanking',
+                  
+                }
+              ]
+            }
           },
-        },
-      },
+          hide: [
+            {
+              method: "upi"
+            }
+          ],
+          sequence: [
+            "block.hdfc",
+            "block.other"
+          ],
+          preferences: {
+            show_default_blocks: false//ShouldCheckoutshowitsdefaultblocks?
+          }
+        }
+      // }
     };
     this.updateDemo(var1);
     console.log("-----------------------------", var1);
