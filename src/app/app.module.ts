@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BlockBuilderComponent } from './block-builder/block-builder.component';
 import { CardBlockComponent } from './payment-blocks/card-block/card-block.component';
 import { NetbankingBlockComponent } from './payment-blocks/netbanking-block/netbanking-block.component';
+import { PaymentBlockComponent } from './payment-blocks/payment-block/payment-block.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { NetbankingBlockComponent } from './payment-blocks/netbanking-block/netb
     SafePipe,
     BlockBuilderComponent,
     CardBlockComponent,
-    NetbankingBlockComponent
+    NetbankingBlockComponent,
+    PaymentBlockComponent
   ],
   imports: [
     BrowserModule,

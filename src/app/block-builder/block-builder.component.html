@@ -3,7 +3,7 @@
       <div ngbDropdown class="d-inline-block">
         <button class="btn btn-outline-primary" id="dropdownForm1" ngbDropdownToggle>Add Block</button>
         <div ngbDropdownMenu aria-labelledby="dropdownForm1">
-          <button (click) = "addABlock('type')" ngbDropdownItem>Card</button>
+          <button (click) = "addABlock('card')" ngbDropdownItem>Card</button>
           <button ngbDropdownItem>Netbanking</button>
         </div>
       </div>
@@ -12,4 +12,8 @@
 
 <!-- block child forms will apper here -->
 
-<ng-template #dynamicInsert></ng-template>
+<div *ngFor="let paymentBlock of paymentBlockList">
+
+<app-payment-block  #dynamicInsert type={{paymentBlock}}></app-payment-block >
+
+</div>

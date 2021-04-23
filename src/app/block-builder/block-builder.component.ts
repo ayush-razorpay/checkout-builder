@@ -1,6 +1,7 @@
 import { Component, ComponentFactoryResolver, OnInit, QueryList, ViewChild, ViewContainerRef } from '@angular/core';
 import { GetMethodsService } from '../common/get-methods.service';
 import { CardBlockComponent } from '../payment-blocks/card-block/card-block.component';
+import { PaymentBlockComponent } from '../payment-blocks/payment-block/payment-block.component';
 
 @Component({
   selector: 'app-block-builder',
@@ -8,11 +9,9 @@ import { CardBlockComponent } from '../payment-blocks/card-block/card-block.comp
   styleUrls: ['./block-builder.component.css']
 })
 export class BlockBuilderComponent implements OnInit {
-  @ViewChild('dynamicInsert') dynamicInsert: QueryList<ViewContainerRef>;
+  @ViewChild('dynamicInsert') dynamicInsert: QueryList<PaymentBlockComponent>;
 
-  constructor(private methodsService : GetMethodsService,
-    private viewContainerRef: ViewContainerRef
-    ,private componentFactoryResolver: ComponentFactoryResolver) { }
+  constructor(private methodsService : GetMethodsService) { }
 
 
   paymentBlockList = new Array();
@@ -26,15 +25,12 @@ export class BlockBuilderComponent implements OnInit {
   addABlock(type){
     console.log("method called");
   
+    this.paymentBlockList.push(type);
 
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(CardBlockComponent);
-   // const containerRef = this.viewContainerRef;
-   // containerRef.clear();
-  //  const dyynamicComponent = <CardBlockComponent>this.dynamicInsert.reset()
-  
-    //containerRef.createComponent(componentFactory);
 
   }
 
-
+  
 }
+
+
