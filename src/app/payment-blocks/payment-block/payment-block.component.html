@@ -1,5 +1,8 @@
 <!-- <p>payment-block works!</p> -->
 
-<br/>
 
+<div class = "one container">
+    <br/>
 <div *ngIf="type == 'card'"> <app-card-block> </app-card-block > </div>
+<div *ngIf="type == 'netbanking'"> <app-netbanking-block> </app-netbanking-block > </div>
+</div>
