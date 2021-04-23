@@ -1,14 +1,20 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { BlockBuilderServiceService } from 'src/app/block-builder/block-builder-service.service';
+import { PaymentBlockInterface } from '../PaymentBlocksInterface';
 
 @Component({
   selector: 'app-payment-block',
   templateUrl: './payment-block.component.html',
   styleUrls: ['./payment-block.component.css']
 })
-export class PaymentBlockComponent implements OnInit {
+export class PaymentBlockComponent implements OnInit,PaymentBlockInterface {
+
+
+  @ViewChild('dynamicSubBlock') dynamicSubBlock: PaymentBlockInterface;
 
   constructor(private blockBuilderService:BlockBuilderServiceService) { }
+
+
 
   ngOnInit(): void {
   }
@@ -20,6 +26,11 @@ export class PaymentBlockComponent implements OnInit {
   public isCollapsed = false;
 
   removeBlock(){
-this.blockBuilderService.removeBlock(this.id);
+    this.blockBuilderService.removeBlock(this.id);
+  }
+
+  getConfJsob(): object {
+   return this.dynamicSubBlock.getConfJsob();
+
   }
 }

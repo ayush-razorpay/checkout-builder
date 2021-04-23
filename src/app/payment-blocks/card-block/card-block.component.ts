@@ -2,15 +2,18 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { GetMethodsService } from 'src/app/common/get-methods.service';
+import { Card } from 'src/app/model/intrument/Card';
+import { PaymentBlockInterface } from '../PaymentBlocksInterface';
 
 @Component({
   selector: 'app-card-block',
   templateUrl: './card-block.component.html',
   styleUrls: ['./card-block.component.css']
 })
-export class CardBlockComponent implements OnInit {
+export class CardBlockComponent implements OnInit,PaymentBlockInterface {
 
   constructor(private getPaymentMethods : GetMethodsService) { }
+  
 
 
   networkOptions = new Array();
@@ -54,7 +57,7 @@ export class CardBlockComponent implements OnInit {
       },
     },
     {
-      key: 'Issuer',
+      key: 'issuer',
       type: 'select',
       templateOptions: {
         label: 'Issuer',
@@ -78,7 +81,7 @@ export class CardBlockComponent implements OnInit {
     },
     {
       className: 'col-3',
-      key: 'Network',
+      key: 'network',
       type: 'select',
       templateOptions: {
         label: 'Network',
@@ -104,7 +107,7 @@ export class CardBlockComponent implements OnInit {
     
     {
       className: 'col-3',
-      key: 'Type',
+      key: 'type',
       type: 'select',
       templateOptions: {
         label: 'Type',
@@ -117,11 +120,21 @@ export class CardBlockComponent implements OnInit {
     }
   ];
 
-  onSubmit() {
-    console.log(this.model);
-  }
+  // onSubmit() {
+  //   console.log(this.model);
+  // }
 
   toggleDisabled() {
     this.options.formState.disabled = !this.options.formState.disabled;
+  }
+
+
+ public getConfJsob(): object {
+
+  console.log("why is this method not getting called");
+
+  
+ console.log('')
+    return new Card(this.model);
   }
 }

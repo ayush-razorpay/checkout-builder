@@ -1,18 +1,27 @@
 <div class="row">
-    <div class="col">
+    <div class="col-8">
       <div ngbDropdown class="d-inline-block">
-        <button class="btn btn-outline-primary" id="dropdownForm1" ngbDropdownToggle>Add Instrument</button>
+        <button class="btn btn-primary" id="dropdownForm1" ngbDropdownToggle>Add Instrument</button>
         <div ngbDropdownMenu aria-labelledby="dropdownForm1">
           <button (click) = "addABlock('card')" ngbDropdownItem>Card</button>
           <button (click) = "addABlock('netbanking')" ngbDropdownItem>Netbanking</button>
         </div>
       </div>
     </div>
+    <div class="col-4">
+      <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-primary"  (click) = "getBlockConf()" id="" >Apply Changes</button>
+      </div>
+    </div>
+
   </div>
+
+
 
 <!-- block child forms will apper here -->
 
 <div *ngFor="let paymentBlock of service.paymentBlockList">
+
 <app-payment-block  #dynamicInsert type={{paymentBlock.type}}  id= {{paymentBlock.id}} ></app-payment-block >
 
 </div>
