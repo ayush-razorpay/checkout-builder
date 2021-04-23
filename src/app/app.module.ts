@@ -13,6 +13,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DemoServiceService } from './checkout-demo/service/demo-service.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BlockBuilderComponent } from './block-builder/block-builder.component';
+import { CardBlockComponent } from './payment-blocks/card-block/card-block.component';
+import { NetbankingBlockComponent } from './payment-blocks/netbanking-block/netbanking-block.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { BlockBuilderComponent } from './block-builder/block-builder.component';
     ToggelSwitchComponent,
     MainCheckoutComponent,
     SafePipe,
-    BlockBuilderComponent
+    BlockBuilderComponent,
+    CardBlockComponent,
+    NetbankingBlockComponent
   ],
   imports: [
     BrowserModule,
