@@ -142,6 +142,8 @@ export class CardBlockComponent implements OnInit,PaymentBlockInterface {
   types:this.model.types,
  };
 
+ Object.keys(toReturnObj).forEach(key => toReturnObj[key] === undefined && delete toReturnObj[key])
+
 //  Array.prototype.push.apply(toReturnObj.issuers, this.model.issuers);
  
 //  Array.prototype.push.apply(toReturnObj.networks, this.model.networks);

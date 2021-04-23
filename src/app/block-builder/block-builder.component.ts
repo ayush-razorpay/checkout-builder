@@ -49,37 +49,23 @@ export class BlockBuilderComponent implements OnInit {
       // config: {
         display: {
           blocks: {
-            hdfc: {
-              //nameforHDFCblockname: "Pay using HDFC Bank",
+            block1: {
+              name: "Ayush",
               instruments: temp
             },
-            other: {
-              //nameforotherblockname: "Other Payment modes",
-              instruments: [
-                {
-                  method: "card",
-                  issuers: [
-                    "ICIC"
-                  ]
-                },
-                {
-                  method: 'netbanking',
-                  
-                }
-              ]
-            }
+
           },
-          hide: [
-            {
-              method: "upi"
-            }
-          ],
+          // hide: [
+          //   {
+          //     method: "upi"
+          //   }
+          // ],
           sequence: [
-            "block.hdfc",
-            "block.other"
+             "block.block1",
+            // "block.other"
           ],
           preferences: {
-            show_default_blocks: false//ShouldCheckoutshowitsdefaultblocks?
+            show_default_blocks: false
           }
         }
       // }
