@@ -11,6 +11,7 @@ import { ToggelSwitchComponent } from './toggel-switch/toggel-switch.component';
 import { MainCheckoutComponent } from './main-checkout/main-checkout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DemoServiceService } from './checkout-demo/service/demo-service.service';
+import { CodeEditorModule } from '@ngstack/code-editor';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { DemoServiceService } from './checkout-demo/service/demo-service.service
     NgbModule,
     ColorPickerModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CodeEditorModule.forRoot()
   ],
   providers: [ToggelSwitchComponent,DemoServiceService],
   bootstrap: [AppComponent]
