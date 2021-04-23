@@ -12,8 +12,7 @@
 
 <!-- block child forms will apper here -->
 
-<div *ngFor="let paymentBlock of paymentBlockList">
-
-<app-payment-block  #dynamicInsert type={{paymentBlock}}></app-payment-block >
+<div *ngFor="let paymentBlock of service.paymentBlockList">
+<app-payment-block  #dynamicInsert type={{paymentBlock.type}}  id= {{paymentBlock.id}} ></app-payment-block >
 
 </div>

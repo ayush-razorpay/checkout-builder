@@ -1,8 +1,37 @@
-<!-- <p>payment-block works!</p> -->
+<div class="card container">
+  <div class="row">
+      <div class="col-9">
+  
+    <button
+    type="button"
+    class="btn btn-outline-primary"
+    (click)="collapse.toggle()"
+    [attr.aria-expanded]="!isCollapsed"
+    aria-controls="collapseExample"
+  >
+    {{ isCollapsed ? "expand" : "collapse" }} {{ type }} {{id}}
+  </button>
+</div>
+<div class="col-3">
+    <button
+    type="button"
+    class="btn btn-outline-primary"
+    (click)="removeBlock()"
+  >
+    Remove
+  </button>
+</div>
 
-
-<div class = "one container">
-    <br/>
-<div *ngIf="type == 'card'"> <app-card-block> </app-card-block > </div>
-<div *ngIf="type == 'netbanking'"> <app-netbanking-block> </app-netbanking-block > </div>
+</div>
+<br/>
+  <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+    <div class="card">
+      <div class="card-body">
+        <div *ngIf="type == 'card'"><app-card-block> </app-card-block></div>
+        <div *ngIf="type == 'netbanking'">
+          <app-netbanking-block> </app-netbanking-block>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
