@@ -11,6 +11,8 @@ import { ToggelSwitchComponent } from './toggel-switch/toggel-switch.component';
 import { MainCheckoutComponent } from './main-checkout/main-checkout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DemoServiceService } from './checkout-demo/service/demo-service.service';
+import { HttpClientModule } from '@angular/common/http';
+import { BlockBuilderComponent } from './block-builder/block-builder.component';
 
 @NgModule({
   declarations: [
@@ -20,14 +22,17 @@ import { DemoServiceService } from './checkout-demo/service/demo-service.service
     CheckoutDemoComponent,
     ToggelSwitchComponent,
     MainCheckoutComponent,
-    SafePipe
+    SafePipe,
+    BlockBuilderComponent
   ],
   imports: [
     BrowserModule,
     NgbModule,
     ColorPickerModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    
   ],
   providers: [ToggelSwitchComponent,DemoServiceService],
   bootstrap: [AppComponent]
