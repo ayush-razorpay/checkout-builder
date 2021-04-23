@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { GetMethodsService } from 'src/app/common/get-methods.service';
-import { Card } from 'src/app/model/intrument/Card';
 import { PaymentBlockInterface } from '../PaymentBlocksInterface';
 
 @Component({
@@ -57,7 +56,7 @@ export class CardBlockComponent implements OnInit,PaymentBlockInterface {
       },
     },
     {
-      key: 'issuer',
+      key: 'issuers',
       type: 'select',
       templateOptions: {
         label: 'Issuer',
@@ -81,7 +80,7 @@ export class CardBlockComponent implements OnInit,PaymentBlockInterface {
     },
     {
       className: 'col-3',
-      key: 'network',
+      key: 'networks',
       type: 'select',
       templateOptions: {
         label: 'Network',
@@ -107,7 +106,7 @@ export class CardBlockComponent implements OnInit,PaymentBlockInterface {
     
     {
       className: 'col-3',
-      key: 'type',
+      key: 'types',
       type: 'select',
       templateOptions: {
         label: 'Type',
@@ -135,6 +134,21 @@ export class CardBlockComponent implements OnInit,PaymentBlockInterface {
 
   
  console.log('')
-    return new Card(this.model);
+
+ let toReturnObj = {
+  method : 'card',
+  issuers: new Array(),
+  networks: new Array(),
+  types: new Array(),
+ };
+
+ Array.prototype.push.apply(toReturnObj.issuers, this.model.issuers);
+ 
+ Array.prototype.push.apply(toReturnObj.networks, this.model.networks);
+ 
+ Array.prototype.push.apply(toReturnObj.types, this.model.types);
+ 
+
+    return toReturnObj;
   }
 }
