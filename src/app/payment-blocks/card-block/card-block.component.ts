@@ -34,7 +34,10 @@ export class CardBlockComponent implements OnInit,PaymentBlockInterface {
 
     });
 
+
   }
+
+  
   options: FormlyFormOptions = {
     formState: {
       disabled: true,
@@ -119,9 +122,6 @@ export class CardBlockComponent implements OnInit,PaymentBlockInterface {
     }
   ];
 
-  // onSubmit() {
-  //   console.log(this.model);
-  // }
 
   toggleDisabled() {
     this.options.formState.disabled = !this.options.formState.disabled;
@@ -143,13 +143,6 @@ export class CardBlockComponent implements OnInit,PaymentBlockInterface {
  };
 
  Object.keys(toReturnObj).forEach(key => toReturnObj[key] === undefined && delete toReturnObj[key])
-
-//  Array.prototype.push.apply(toReturnObj.issuers, this.model.issuers);
- 
-//  Array.prototype.push.apply(toReturnObj.networks, this.model.networks);
- 
-//  Array.prototype.push.apply(toReturnObj.types, this.model.types);
- 
 
     return toReturnObj;
   }

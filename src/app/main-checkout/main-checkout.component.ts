@@ -2,9 +2,6 @@ import { QueryList, ViewChildren } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { DemoServiceService } from '../checkout-demo/service/demo-service.service';
-import { CheckoutModelTheme } from '../model/CheckoutModalTheme';
-import { RzpCheckout } from '../model/RzpCheckout';
-import { PaymentBlockComponent } from '../payment-blocks/payment-block/payment-block.component';
 import { PaymentBlockInterface } from '../payment-blocks/PaymentBlocksInterface';
 import { ToggelSwitchComponent } from '../toggel-switch/toggel-switch.component';
 
@@ -17,48 +14,17 @@ import { ToggelSwitchComponent } from '../toggel-switch/toggel-switch.component'
 export class MainCheckoutComponent implements OnInit {
 
   constructor(private demoServiceService:DemoServiceService) { }
+  
+  ngOnInit(): void {
+  
+  }
  
   dynamicSubBlock: PaymentBlockInterface;
-  type: string;
-  id: string;
-  public isCollapsed: boolean;
  
-
-  entityType : string;
-
-  ngOnInit(): void {
-
-    let rzpCheckout : RzpCheckout;
-    this.mainForm.valueChanges.subscribe(() => {
-
-      rzpCheckout = this.mainForm.value;
-
-      this.entityType=rzpCheckout.entityType;
-
-      let x : CheckoutModelTheme = new CheckoutModelTheme() ;
-
-      x.color=rzpCheckout.color;
-
-      
-
-      rzpCheckout.theme=x;
-      console.log(rzpCheckout);
-      if(rzpCheckout != null)
-      {
-     
-       let var1= RzpCheckout.pack(rzpCheckout);
-      this.demoServiceService.updateDemoComponent(var1);
-
-      }
-    });
-
-  }
-  color = '#76988d';
-  active = 1;
 
   @ViewChildren(ToggelSwitchComponent) private toogelSwitchList: QueryList<ToggelSwitchComponent>;
  
-  model : RzpCheckout = new RzpCheckout();
+ // model : RzpCheckout = new RzpCheckout();
 
   mainForm = new FormGroup({
 
@@ -81,6 +47,7 @@ export class MainCheckoutComponent implements OnInit {
     remeberCustomer:new FormControl(''),
   
   });
+
 
 
 
