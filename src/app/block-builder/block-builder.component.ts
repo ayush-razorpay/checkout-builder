@@ -34,9 +34,6 @@ export class BlockBuilderComponent implements OnInit {
   getBlockConf() {
     let temp = new Array();
     
- 
-
-
 
     this.dynamicInsert.toArray().forEach((x) => temp.push(x.getConfJsob()));
 

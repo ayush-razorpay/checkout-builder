@@ -21,63 +21,30 @@ export class CredentialsComponent implements OnInit {
 
   fields: FormlyFieldConfig[] = [
     {
-      fieldGroupClassName: 'display-flex',
+      fieldGroupClassName: 'row',
       fieldGroup: [
         {
-          className: 'flex-1',
+          className: 'col-6',
           type: 'input',
-          key: 'firstName',
+          key: 'key',
+          defaultValue:'rzp_test_oJPbj9rC1rDGAQ',
           templateOptions: {
-            label: 'First Name',
+            label: 'key',
+            required: true,
           },
         },
         {
-          className: 'flex-1',
+          className: 'col-6',
           type: 'input',
-          key: 'lastName',
+          key: 'currency',
+          defaultValue:'INR',
           templateOptions: {
-            label: 'Last Name',
-          },
-          expressionProperties: {
-            'templateOptions.disabled': '!model.firstName',
-          },
+            label: 'currency',
+            required: true,
+            
+          }
         },
-      ],
-    },
-    {
-      template: '<hr /><div><strong>Address:</strong></div>',
-    },
-    {
-      fieldGroupClassName: 'display-flex',
-      fieldGroup: [
-        {
-          className: 'flex-2',
-          type: 'input',
-          key: 'street',
-          templateOptions: {
-            label: 'Street',
-          },
-        },
-        {
-          className: 'flex-1',
-          type: 'input',
-          key: 'cityName',
-          templateOptions: {
-            label: 'City',
-          },
-        },
-        {
-          className: 'flex-1',
-          type: 'input',
-          key: 'zip',
-          templateOptions: {
-            type: 'number',
-            label: 'Zip',
-            max: 99999,
-            min: 0,
-            pattern: '\\d{5}',
-          },
-        },
+     
       ],
     },
 

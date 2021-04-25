@@ -11,7 +11,6 @@ export class BlockBuilderServiceService {
   public paymentBlockList = new Array();
 
   public removeBlock(id):void{
-
     this.paymentBlockList =  this.paymentBlockList.filter(x=> x.id != id);
   }
 
