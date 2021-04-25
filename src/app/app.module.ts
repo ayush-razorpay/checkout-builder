@@ -22,6 +22,7 @@ import { CredentialsComponent } from './main-checkout-blocks/credentials/credent
 import { ConfigsComponent } from './main-checkout-blocks/configs/configs.component';
 import { MainBlockComponent } from './main-checkout-blocks/main-block/main-block.component';
 import { AdditionalConfigsComponent } from './main-checkout-blocks/additional-configs/additional-configs.component';
+import { CallbackConfigsComponent } from './main-checkout-blocks/callback-configs/callback-configs.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { AdditionalConfigsComponent } from './main-checkout-blocks/additional-co
     ConfigsComponent,
     MainBlockComponent,
     AdditionalConfigsComponent,
+    CallbackConfigsComponent,
   ],
   imports: [
     BrowserModule,
