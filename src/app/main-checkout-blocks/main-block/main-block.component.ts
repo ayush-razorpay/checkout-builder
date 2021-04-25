@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { MainCheckoutService } from 'src/app/main-checkout/main-checkout-service/main-checkout.service';
 import { PaymentBlockInterface } from 'src/app/payment-blocks/PaymentBlocksInterface';
 
 @Component({
@@ -17,6 +18,7 @@ export class MainBlockComponent implements OnInit {
 
   @Input() type : string ;
   @Input() id : string ;
+  @Input() service : MainCheckoutService;
 
   public isCollapsed = false;
 

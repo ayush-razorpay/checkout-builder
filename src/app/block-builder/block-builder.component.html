@@ -16,14 +16,6 @@
 
   </div>
 
-<!-- block child forms will apper here -->
-
-<!-- <div *ngFor="let paymentBlock of service.paymentBlockList">
-
-<app-payment-block  #dynamicInsert type={{paymentBlock.type}}  id= {{paymentBlock.id}} ></app-payment-block >
-
-</div> -->
-
 
 <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
   <div *ngFor="let paymentBlock of service.paymentBlockList" cdkDrag>

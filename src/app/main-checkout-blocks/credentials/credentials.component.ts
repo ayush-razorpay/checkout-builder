@@ -1,20 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
+import { MainCheckoutService } from 'src/app/main-checkout/main-checkout-service/main-checkout.service';
+import { AbstractMailCheckout } from '../abstarct-main-checkout';
 
 @Component({
   selector: 'app-credentials',
   templateUrl: './credentials.component.html',
   styleUrls: ['./credentials.component.css']
 })
-export class CredentialsComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+export class CredentialsComponent extends AbstractMailCheckout implements OnInit {
+  getForm(): FormGroup {
+  return this.form;
+  }
+  getJsonPath(): string {
+    throw new Error('Method not implemented.');
   }
 
+  ngOnInit(): void {
 
+    this.form.valueChanges.subscribe(x => {
+      console.log('changes',x);
+      this.updateModelToService(x)
+ 
+  })
+
+  
+
+
+
+}
+
+
+  
   form = new FormGroup({});
   model: any = {};
   options: FormlyFormOptions = {};

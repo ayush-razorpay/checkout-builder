@@ -1,7 +1,6 @@
 import { ApplicationRef, ChangeDetectorRef } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { RzpCheckout } from 'src/app/model/RzpCheckout';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +25,7 @@ export class DemoServiceService {
 
   constructor(private c:ApplicationRef) { }
 
-  updateDemoComponent(r : RzpCheckout){
+  updateDemoComponent(r : any){
   
     this.configcheckoutObject=r;
   let x=  JSON.stringify(this.configcheckoutObject)

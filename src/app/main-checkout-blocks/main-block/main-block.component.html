@@ -35,10 +35,11 @@
       <div class="card">
         <div class="card-body">
       
-          <div *ngIf="type == 'callback'"> <app-callback-configs  #dynamicSubBlock> </app-callback-configs></div>
+          
        <div *ngIf="type == 'credentials'"> <app-credentials  #dynamicSubBlock> </app-credentials></div>
         <div *ngIf="type == 'configs'"> <app-configs  #dynamicSubBlock> </app-configs></div>
         <div *ngIf="type == 'transaction-configs'"> <app-additional-configs  #dynamicSubBlock> </app-additional-configs></div>
+        <div *ngIf="type == 'callback'"> <app-callback-configs  #dynamicSubBlock> </app-callback-configs></div>
       </div>
       </div>
     </div>

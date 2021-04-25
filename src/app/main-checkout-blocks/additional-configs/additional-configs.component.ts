@@ -14,10 +14,14 @@ export class AdditionalConfigsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  tnxTypes = [ {label: 'Order Id  ', value : 'order_id'},
+  tnxTypes = [ 
+  {label: 'Order Id  ', value : 'order_id'},
   {label: 'Subscription Id  ', value : 'subscription_id'},
   {label: 'Invoice Id  ', value : 'invoice_id'},
-  {label: 'Payment Link Id  ', value : 'payment_link_id'}];
+  {label: 'Payment Link Id  ', value : 'payment_link_id'}
+];
+
+
   form = new FormGroup({});
   model: any = {};
   options: FormlyFormOptions = {};
@@ -36,9 +40,10 @@ export class AdditionalConfigsComponent implements OnInit {
 
         },
         {
+          //handel this while returing the model
           className: 'col-6',
           type: 'input',
-          key: 'order_id',
+          key: 'tnx_id',
           templateOptions: {
             label: 'Enter Respective Id',
           },
