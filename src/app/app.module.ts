@@ -18,6 +18,12 @@ import { NetbankingBlockComponent } from './payment-blocks/netbanking-block/netb
 import { PaymentBlockComponent } from './payment-blocks/payment-block/payment-block.component';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
+import { CredentialsComponent } from './main-checkout-blocks/credentials/credentials.component';
+import { ConfigsComponent } from './main-checkout-blocks/configs/configs.component';
+import { MainBlockComponent } from './main-checkout-blocks/main-block/main-block.component';
+import { AdditionalConfigsComponent } from './main-checkout-blocks/additional-configs/additional-configs.component';
+import { CallbackConfigsComponent } from './main-checkout-blocks/callback-configs/callback-configs.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +37,11 @@ import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
     CardBlockComponent,
     NetbankingBlockComponent,
     PaymentBlockComponent,
+    CredentialsComponent,
+    ConfigsComponent,
+    MainBlockComponent,
+    AdditionalConfigsComponent,
+    CallbackConfigsComponent,
   ],
   imports: [
     BrowserModule,

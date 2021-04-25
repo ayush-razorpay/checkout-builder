@@ -1,14 +1,9 @@
 import {
   Component,
-  ComponentFactoryResolver,
   OnInit,
   QueryList,
-  ViewChild,
   ViewChildren,
-  ViewContainerRef,
 } from "@angular/core";
-import { GetMethodsService } from "../common/get-methods.service";
-import { CardBlockComponent } from "../payment-blocks/card-block/card-block.component";
 import { PaymentBlockComponent } from "../payment-blocks/payment-block/payment-block.component";
 import { v4 as uuidv4 } from "uuid";
 import { BlockBuilderServiceService } from "./block-builder-service.service";
@@ -39,14 +34,11 @@ export class BlockBuilderComponent implements OnInit {
   getBlockConf() {
     let temp = new Array();
     
- 
-
-
 
     this.dynamicInsert.toArray().forEach((x) => temp.push(x.getConfJsob()));
 
     let var1 = {
-      // config: {
+
         display: {
           blocks: {
             block1: {
@@ -55,11 +47,6 @@ export class BlockBuilderComponent implements OnInit {
             },
 
           },
-          // hide: [
-          //   {
-          //     method: "upi"
-          //   }
-          // ],
           sequence: [
              "block.block1",
             // "block.other"
@@ -68,15 +55,12 @@ export class BlockBuilderComponent implements OnInit {
             show_default_blocks: false
           }
         }
-      // }
     };
     this.updateDemo(var1);
     console.log("-----------------------------", var1);
   }
 
   updateDemo(obj) {
-   
-
     this.demoService.updateDemoComponentConfig(obj);
   }
 }
