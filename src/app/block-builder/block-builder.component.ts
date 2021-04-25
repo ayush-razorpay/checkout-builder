@@ -8,6 +8,7 @@ import { PaymentBlockComponent } from "../payment-blocks/payment-block/payment-b
 import { v4 as uuidv4 } from "uuid";
 import { BlockBuilderServiceService } from "./block-builder-service.service";
 import { DemoServiceService } from "../checkout-demo/service/demo-service.service";
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: "app-block-builder",
@@ -62,5 +63,12 @@ export class BlockBuilderComponent implements OnInit {
 
   updateDemo(obj) {
     this.demoService.updateDemoComponentConfig(obj);
+  }
+
+
+
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.service.paymentBlockList, event.previousIndex, event.currentIndex);
   }
 }

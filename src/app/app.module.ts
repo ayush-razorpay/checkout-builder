@@ -23,6 +23,8 @@ import { ConfigsComponent } from './main-checkout-blocks/configs/configs.compone
 import { MainBlockComponent } from './main-checkout-blocks/main-block/main-block.component';
 import { AdditionalConfigsComponent } from './main-checkout-blocks/additional-configs/additional-configs.component';
 import { CallbackConfigsComponent } from './main-checkout-blocks/callback-configs/callback-configs.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,7 @@ import { CallbackConfigsComponent } from './main-checkout-blocks/callback-config
     MainBlockComponent,
     AdditionalConfigsComponent,
     CallbackConfigsComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,9 @@ import { CallbackConfigsComponent } from './main-checkout-blocks/callback-config
     HttpClientModule,
     ReactiveFormsModule,
     FormlyModule.forRoot(),
-    FormlyBootstrapModule
+    FormlyBootstrapModule,
+    BrowserAnimationsModule,
+    DragDropModule
     
   ],
   providers: [ToggelSwitchComponent,DemoServiceService],
