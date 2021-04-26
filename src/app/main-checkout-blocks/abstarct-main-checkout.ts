@@ -4,18 +4,15 @@ import { MainCheckoutService } from "../main-checkout/main-checkout-service/main
 
 
 @Component({ template: '' })
-export abstract class AbstractMailCheckout    {
+export abstract class AbstractMainCheckout    {
 
 constructor(private service : MainCheckoutService){
 
 }
 
 
-updateModelToService(x){
-
-    console.log('lets back update',x);
-
-    this.service.patchMode(x);
+updateModelToService(json:object){
+    this.service.patchMode(json);
 }
   
 

@@ -1,19 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
+import { AbstractMainCheckout } from '../abstarct-main-checkout';
 
 @Component({
   selector: 'app-additional-configs',
   templateUrl: './additional-configs.component.html',
   styleUrls: ['./additional-configs.component.css']
 })
-export class AdditionalConfigsComponent implements OnInit {
+export class AdditionalConfigsComponent  extends AbstractMainCheckout  implements OnInit {
 
-  constructor() { }
 
   ngOnInit(): void {
+    this.form.valueChanges.subscribe(x => {
+      this.updateModelToService(x)
+  });
   }
 
+  
   tnxTypes = [ 
   {label: 'Order Id  ', value : 'order_id'},
   {label: 'Subscription Id  ', value : 'subscription_id'},
