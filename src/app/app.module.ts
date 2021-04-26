@@ -7,7 +7,6 @@ import { NavComponent } from './nav/nav.component';
 import { CheckoutBuilderComponent } from './checkout-builder/checkout-builder.component';
 import { CheckoutDemoComponent, SafePipe } from './checkout-demo/checkout-demo.component';
 import { ColorPickerModule } from 'ngx-color-picker';
-import { ToggelSwitchComponent } from './toggel-switch/toggel-switch.component';
 import { MainCheckoutComponent } from './main-checkout/main-checkout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DemoServiceService } from './checkout-demo/service/demo-service.service';
@@ -18,11 +17,6 @@ import { NetbankingBlockComponent } from './payment-blocks/netbanking-block/netb
 import { PaymentBlockComponent } from './payment-blocks/payment-block/payment-block.component';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
-import { CredentialsComponent } from './main-checkout-blocks/credentials/credentials.component';
-import { ConfigsComponent } from './main-checkout-blocks/configs/configs.component';
-import { MainBlockComponent } from './main-checkout-blocks/main-block/main-block.component';
-import { AdditionalConfigsComponent } from './main-checkout-blocks/additional-configs/additional-configs.component';
-import { CallbackConfigsComponent } from './main-checkout-blocks/callback-configs/callback-configs.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
@@ -32,18 +26,12 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     NavComponent,
     CheckoutBuilderComponent,
     CheckoutDemoComponent,
-    ToggelSwitchComponent,
     MainCheckoutComponent,
     SafePipe,
     BlockBuilderComponent,
     CardBlockComponent,
     NetbankingBlockComponent,
     PaymentBlockComponent,
-    CredentialsComponent,
-    ConfigsComponent,
-    MainBlockComponent,
-    AdditionalConfigsComponent,
-    CallbackConfigsComponent,
     
   ],
   imports: [
@@ -60,7 +48,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     DragDropModule
     
   ],
-  providers: [ToggelSwitchComponent,DemoServiceService],
+  providers: [DemoServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
