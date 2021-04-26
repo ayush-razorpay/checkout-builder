@@ -1,18 +1,24 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 import { DemoServiceService } from 'src/app/checkout-demo/service/demo-service.service';
+import { AbstractMainCheckout } from 'src/app/main-checkout-blocks/abstarct-main-checkout';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MainCheckoutService {
+export class MainCheckoutService implements OnInit{
+
 
   constructor(private checkoutDemoService : DemoServiceService) { }
+  
+  ngOnInit(): void {
+  }
 
   mainModel:object = {};
 
+
   patchMode(json:object):void{
     this.mainModel = {... this.mainModel, ...json};
-
 
     this.checkoutDemoService.updateDemoComponent(this.mainModel);
     
@@ -33,6 +39,11 @@ export class MainCheckoutService {
     Object.keys(json).forEach(x=> delete this.mainModel[x] );
     this.patchMode(json);
     }
+  }
+
+
+  expandUpdate(id){
+
   }
 
 

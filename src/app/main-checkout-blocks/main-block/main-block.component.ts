@@ -14,7 +14,6 @@ export class MainBlockComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  @ViewChild('dynamicSubBlock') dynamicSubBlock: PaymentBlockInterface;
 
   @Input() type : string ;
   @Input() id : string ;
@@ -22,8 +21,11 @@ export class MainBlockComponent implements OnInit {
 
   public isCollapsed = false;
 
-  getConfJsob(): object {
-    return this.dynamicSubBlock.getConfJsob();
- 
+
+
+  public collapse(){
+     this.isCollapsed=true;
    }
+  
 }
+

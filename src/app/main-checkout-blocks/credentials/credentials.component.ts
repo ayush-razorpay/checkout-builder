@@ -11,7 +11,6 @@ import {  AbstractMainCheckout } from '../abstarct-main-checkout';
 })
 export class CredentialsComponent extends AbstractMainCheckout implements OnInit {
 
-
   ngOnInit(): void {
     this.form.valueChanges.subscribe(x => {
       this.updateModelToService(x);

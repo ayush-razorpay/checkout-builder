@@ -15,7 +15,6 @@ export class ConfigsComponent  extends AbstractMainCheckout  implements OnInit {
 
   ngOnInit(): void {
     this.form.valueChanges.subscribe(y => {
-
       let x = JSON.parse(JSON.stringify(y));
 
       if(x.enableTimeout == false)
@@ -94,8 +93,6 @@ export class ConfigsComponent  extends AbstractMainCheckout  implements OnInit {
           defaultValue:true,
           templateOptions: {
             label: 'Retry Enabled',
-            
-            
           },
         },
         {
@@ -119,7 +116,6 @@ export class ConfigsComponent  extends AbstractMainCheckout  implements OnInit {
           defaultValue:false,
           templateOptions: {
             label: 'Timeout Enabled',
-            
           },
         },
         {
@@ -130,7 +126,6 @@ export class ConfigsComponent  extends AbstractMainCheckout  implements OnInit {
           templateOptions: {
             label: 'Timeout in seconds',
             type: 'number',
-            
           },
           expressionProperties: {
             'hideExpression': '!model.enableTimeout',

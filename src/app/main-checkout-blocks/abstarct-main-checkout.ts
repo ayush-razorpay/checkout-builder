@@ -6,14 +6,11 @@ import { MainCheckoutService } from "../main-checkout/main-checkout-service/main
 @Component({ template: '' })
 export abstract class AbstractMainCheckout    {
 
-constructor(private service : MainCheckoutService){
-
-    
+constructor(private service : MainCheckoutService){   
 }
-
 
 updateModelToService(json:object){
     this.service.updateChange(json);
 }
-  
+
 }

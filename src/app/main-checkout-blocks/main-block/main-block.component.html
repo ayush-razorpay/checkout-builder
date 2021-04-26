@@ -16,19 +16,8 @@
     >
       {{ isCollapsed ? "expand" : "collapse" }} {{ type }}
     </button>
-    <!-- <p>{{id}}</p> -->
   </div>
-  
-  <!-- <div class="col-3">
-      <button
-      type="button"
-      class="btn btn-outline-primary"
-      (click)="removeBlock()"
-    >
-      Remove
-    </button>
-  </div>
-   -->
+
   </div>
   <br/>
     <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
