@@ -9,11 +9,19 @@ import { AbstractMainCheckout } from '../abstarct-main-checkout';
   styleUrls: ['./configs.component.css']
 })
 export class ConfigsComponent  extends AbstractMainCheckout  implements OnInit {
+ 
+
 
 
   ngOnInit(): void {
-    this.form.valueChanges.subscribe(x => {
-      this.updateModelToService(x)
+    this.form.valueChanges.subscribe(y => {
+
+      let x = JSON.parse(JSON.stringify(y));
+
+      if(x.enableTimeout == false)
+      x.timeout = null;
+
+      this.updateModelToService(x);
   });
   }
 

@@ -10,14 +10,17 @@ import { AbstractMainCheckout } from '../abstarct-main-checkout';
 })
 export class AdditionalConfigsComponent  extends AbstractMainCheckout  implements OnInit {
 
-
   ngOnInit(): void {
     this.form.valueChanges.subscribe(x => {
       this.updateModelToService(x)
   });
   }
 
-  
+  getJsob() {
+    return this.model;
+  }
+
+
   tnxTypes = [ 
   {label: 'Order Id  ', value : 'order_id'},
   {label: 'Subscription Id  ', value : 'subscription_id'},

@@ -8,20 +8,32 @@ export class MainCheckoutService {
 
   constructor(private checkoutDemoService : DemoServiceService) { }
 
-  mainModel:any;
+  mainModel:object = {};
 
   patchMode(json:object):void{
-
-    console.log('injected method called',json);
     this.mainModel = {... this.mainModel, ...json};
+
+
     this.checkoutDemoService.updateDemoComponent(this.mainModel);
+    
+    Object.keys(this.mainModel).forEach(x=>{
 
+      if(this.mainModel[x] == null || this.mainModel[x] == undefined || this.mainModel[x] == '' )
+
+     delete this.mainModel[x];
+
+    });
   }
 
+  updateChange(json:object){
 
-  getModel()
-  {
-    return this.mainModel;
+    if(json != null)
+    {
+
+    Object.keys(json).forEach(x=> delete this.mainModel[x] );
+    this.patchMode(json);
+    }
   }
+
 
 }
