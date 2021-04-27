@@ -8,7 +8,13 @@ import { Observable, Subject } from 'rxjs';
 export class DemoServiceService {
 
 
-  configcheckoutObject : any;
+  configcheckoutObject : any = {
+    tnxType: "order_id",
+   
+   theme:{ color: "#1a6534"},
+    image:
+      "https://rzp-prod-outline-wiki.s3-ap-southeast-1.amazonaws.com/favicon.png",
+  };
 
   public urlChangeSubject  : Subject<string> = new Subject<string>();
 
@@ -55,6 +61,11 @@ export class DemoServiceService {
 
   }
 
+
+  getconfigcheckoutMode(){
+
+    return this.configcheckoutObject;
+  }
 
 
   
