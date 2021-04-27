@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ToggelSwitchComponent } from './toggel-switch.component';
+import { BlockBuilderComponent } from './block-builder.component';
 
-describe('ToggelSwitchComponent', () => {
-  let component: ToggelSwitchComponent;
-  let fixture: ComponentFixture<ToggelSwitchComponent>;
+describe('BlockBuilderComponent', () => {
+  let component: BlockBuilderComponent;
+  let fixture: ComponentFixture<BlockBuilderComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ToggelSwitchComponent ]
+      declarations: [ BlockBuilderComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ToggelSwitchComponent);
+    fixture = TestBed.createComponent(BlockBuilderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
