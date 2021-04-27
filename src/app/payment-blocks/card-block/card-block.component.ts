@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
-import { GetMethodsService } from 'src/app/common/get-methods.service';
+import { GetMethodsService } from 'src/app/data-services/get-methods.service';
 import { PaymentBlockInterface } from '../PaymentBlocksInterface';
 
 @Component({

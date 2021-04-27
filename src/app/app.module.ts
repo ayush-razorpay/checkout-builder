@@ -19,6 +19,7 @@ import { FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { FormlyFieldInput } from './formly-field-input';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     CardBlockComponent,
     NetbankingBlockComponent,
     PaymentBlockComponent,
+    FormlyFieldInput
+    
     
   ],
   imports: [
@@ -45,8 +48,12 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     FormlyModule.forRoot(),
     FormlyBootstrapModule,
     BrowserAnimationsModule,
-    DragDropModule
-    
+    DragDropModule,
+    FormlyModule.forRoot({
+      types: [
+        { name: 'colorPicker', component: FormlyFieldInput },
+      ]
+    }),    
   ],
   providers: [DemoServiceService],
   bootstrap: [AppComponent]

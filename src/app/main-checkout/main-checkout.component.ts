@@ -24,11 +24,25 @@ export class MainCheckoutComponent implements OnInit {
   
   ngOnInit(): void {
   
-    this.form.valueChanges.subscribe(x=>this.demoCheckoutService.updateDemoComponent(x));
+    this.form.valueChanges.subscribe(y=>
+{
+  
+  let x = JSON.parse(JSON.stringify(y));
+
+  x.theme = {color : x.color};
+  
+  delete x['color'];
+  
+ 
+
+  this.demoCheckoutService.updateDemoComponent(x);
+        
+      }
+      );
 
   }
   form = new FormGroup({});
-  model: any = {'tnxType':'order_id'};
+  model: any = {'tnxType':'order_id','color':'#1a6534'};
   options: FormlyFormOptions = {};
 
   fields: FormlyFieldConfig[] = [
@@ -36,7 +50,7 @@ export class MainCheckoutComponent implements OnInit {
       fieldGroupClassName: 'row',
       fieldGroup: [
         {
-          className: 'col-6',
+          className: 'col-4',
           type: 'input',
           key: 'key',
           defaultValue:'rzp_test_oJPbj9rC1rDGAQ',
@@ -46,7 +60,7 @@ export class MainCheckoutComponent implements OnInit {
           },
         },
         {
-          className: 'col-6',
+          className: 'col-4',
           type: 'input',
           key: 'currency',
           defaultValue:'INR',
@@ -57,7 +71,7 @@ export class MainCheckoutComponent implements OnInit {
           }
         },
         {
-          className: 'col-6',
+          className: 'col-4',
           type: 'input',
           key: 'image',
          templateOptions: {
@@ -65,7 +79,7 @@ export class MainCheckoutComponent implements OnInit {
           },
         },
         {
-          className: 'col-6',
+          className: 'col-4',
           type: 'input',
           key: 'name',
           templateOptions: {
@@ -73,7 +87,7 @@ export class MainCheckoutComponent implements OnInit {
           }
         },
         {
-          className: 'col-6',
+          className: 'col-4',
           type: 'input',
           key: 'color',
           templateOptions: {
@@ -81,7 +95,7 @@ export class MainCheckoutComponent implements OnInit {
           }
         },
         {
-          className: 'col-6',
+          className: 'col-4',
           type: 'input',
           key: 'description',
           templateOptions: {
@@ -89,7 +103,7 @@ export class MainCheckoutComponent implements OnInit {
           }
         },
         {
-          className: 'col-6',
+          className: 'col-4',
           type: 'input',
           key: 'amount',
           defaultValue:100,
@@ -101,7 +115,7 @@ export class MainCheckoutComponent implements OnInit {
           }
         },
         {
-          className: 'col-6',
+          className: 'col-4',
           type: 'input',
           key: 'notes',
           templateOptions: {
@@ -110,7 +124,7 @@ export class MainCheckoutComponent implements OnInit {
         },
 
         {
-          className: 'col-6',
+          className: 'col-4',
           key: 'tnxType',
           type: 'select',
           templateOptions: {
@@ -123,7 +137,7 @@ export class MainCheckoutComponent implements OnInit {
         },
         {
           //handel this while returing the model
-          className: 'col-6',
+          className: 'col-4',
           type: 'input',
           key: 'tnx_id',
           templateOptions: {
@@ -138,7 +152,7 @@ export class MainCheckoutComponent implements OnInit {
         },
 
         {
-          className: 'col-6',
+          className: 'col-4',
           key: 'retry',
           type: 'checkbox',
           defaultValue:true,
@@ -147,7 +161,7 @@ export class MainCheckoutComponent implements OnInit {
           },
         },
         {
-          className: 'col-6',
+          className: 'col-4',
           type: 'input',
           key: 'max_count',
           defaultValue:'3',
@@ -161,7 +175,7 @@ export class MainCheckoutComponent implements OnInit {
           },
         },
         {
-          className: 'col-6',
+          className: 'col-4',
           key: 'enableTimeout',
           type: 'checkbox',
           defaultValue:false,
@@ -170,7 +184,7 @@ export class MainCheckoutComponent implements OnInit {
           },
         },
         {
-          className: 'col-6',
+          className: 'col-4',
           type: 'input',
           key: 'timeout',
            defaultValue:60,
@@ -180,6 +194,15 @@ export class MainCheckoutComponent implements OnInit {
           },
           expressionProperties: {
             'hideExpression': '!model.enableTimeout',
+          },
+        },
+        {
+          className: 'col-4',
+          key: 'color',
+          type: 'colorPicker',
+          templateOptions: {
+            // label: 'Field 1',
+            // placeholder: 'Formly is terrific!',
           },
         },
       ],

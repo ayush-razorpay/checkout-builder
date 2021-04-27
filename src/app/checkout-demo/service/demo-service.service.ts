@@ -26,6 +26,8 @@ export class DemoServiceService {
   constructor(private c:ApplicationRef) { }
 
   updateDemoComponent(r : any){
+
+    console.log('--------',r);
   
     this.configcheckoutObject=r;
   let x=  JSON.stringify(this.configcheckoutObject)
