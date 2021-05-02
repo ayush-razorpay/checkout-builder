@@ -20,6 +20,7 @@ export class MainCheckoutComponent implements OnInit {
 
   constructor(private demoCheckoutService: DemoServiceService) {}
 
+  
   ngOnInit(): void {
 
    this.model= this.demoCheckoutService.getconfigcheckoutMode();
