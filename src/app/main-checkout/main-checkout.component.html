@@ -4,7 +4,7 @@
     <div class="card-body">
 
       <form [formGroup]="form">
-        <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+        <formly-form [form]="form" [fields]="fields" (keyup)="onKeyUp($event)" [model]="model"></formly-form>
       </form>
     </div>
   </div>
