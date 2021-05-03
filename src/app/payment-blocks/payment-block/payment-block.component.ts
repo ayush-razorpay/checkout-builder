@@ -26,6 +26,14 @@ export class PaymentBlockComponent extends PaymentInstrument implements OnInit {
   @Input() id : string ;
 
 
+  addABlock(var1){
+
+  }
+
+  getBlockConf(){
+
+  }
+
   public isCollapsed = false;
 
   removeBlock(){

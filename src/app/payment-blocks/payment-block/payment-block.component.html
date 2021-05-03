@@ -1,4 +1,4 @@
-<div class="card container">
+<!-- <div class="card container">
   <div class="row">
       <div class="col-9">
   
@@ -35,4 +35,24 @@
     </div>
     </div>
   </div>
+</div> -->
+
+
+
+<div class="row">
+  <div class="col-8">
+    <div ngbDropdown class="d-inline-block">
+      <button class="btn btn-primary" id="dropdownForm1" ngbDropdownToggle>Add Instrument</button>
+      <div ngbDropdownMenu aria-labelledby="dropdownForm1">
+        <button (click) = "addABlock('card')" ngbDropdownItem>Card</button>
+        <button (click) = "addABlock('netbanking')" ngbDropdownItem>Netbanking</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-4">
+    <div ngbDropdown class="d-inline-block">
+      <button class="btn btn-primary"  (click) = "getBlockConf()" id="" >Apply Changes</button>
+    </div>
+  </div>
+
 </div>

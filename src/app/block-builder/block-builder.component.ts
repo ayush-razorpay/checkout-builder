@@ -24,6 +24,9 @@ export class BlockBuilderComponent implements OnInit {
     private demoService: DemoServiceService
   ) {}
 
+
+  readonly maxLength = 4;
+
   ngOnInit(): void {}
 
   addABlock(type) {
@@ -31,6 +34,11 @@ export class BlockBuilderComponent implements OnInit {
 
     this.service.paymentBlockList.push({ id: uuidv4(), type: type });
   }
+  model = {
+    'Block 1': true,
+    // middle: false,
+    // right: false
+  };
 
   getBlockConf() {
     let temp = new Array();
@@ -66,9 +74,54 @@ export class BlockBuilderComponent implements OnInit {
   }
 
 
+  // drop(event: CdkDragDrop<string[]>) {
+  //   moveItemInArray(this.service.paymentBlockList, event.previousIndex, event.currentIndex);
+  // }
 
+  paymentBlocks :Array<PaymentBlocks> = [
+    {name:'Block 1',id:"1",status: true}
+  ];
 
-  drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.service.paymentBlockList, event.previousIndex, event.currentIndex);
+  drop1(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.paymentBlocks, event.previousIndex, event.currentIndex);
   }
+
+
+  addPaymentBlock(){
+
+    if(this.paymentBlocks.length >= this.maxLength ){
+    alert("Cannot add more payment blocks")
+
+    return;
+
+    }
+
+    let id = (this.paymentBlocks.length+1).toString();
+    let name = 'Block '+ id ;
+    this.paymentBlocks.push(
+
+      {name:name,id:id,status: true}
+      );
+
+
+      // Object.keys( this.model).forEach(x=> this.model[x]=false);
+      // this.model[name]=true;
+
+      this.selectBlockToEdit(id);
+
+  }
+
+  selectBlockToEdit(index){
+   this.paymentBlocks.forEach(x=>x.status = false);
+   this.paymentBlocks[index-1].status=true;
+  }
+
+  
+  
+}
+
+export class PaymentBlocks {
+ name:string;
+ id:string;
+ status:boolean;
 }
