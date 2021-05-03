@@ -8,7 +8,7 @@
     type="button"
     class=""
     (click)="selectBlockToEdit(block.id)"
-    *ngFor="let block of paymentBlocks; let index = index"
+    *ngFor="let block of this.blocksService.paymentBlocks; let index = index"
 
     [ngClass]="block.status ? 'example-box ex1 btn btn-light ' : 'example-box ex1 btn btn-light'"
     data-toggle="button" aria-pressed="false" autocomplete="off"

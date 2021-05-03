@@ -1,60 +1,66 @@
-{{id | json}}
+{{ id | json }}
 
 <div class="row">
   <div class="col-8">
     <div ngbDropdown class="d-inline-block">
-      <button class="btn btn-primary" id="dropdownForm1" ngbDropdownToggle>Add Instrument</button>
+      <button class="btn btn-primary" id="dropdownForm1" ngbDropdownToggle>
+        Add Instrument
+      </button>
       <div ngbDropdownMenu aria-labelledby="dropdownForm1">
-        <button (click) = "addABlock('card')" ngbDropdownItem>Card</button>
-        <button (click) = "addABlock('netbanking')" ngbDropdownItem>Netbanking</button>
+        <button (click)="addABlock('card')" ngbDropdownItem>Card</button>
+        <button (click)="addABlock('netbanking')" ngbDropdownItem>
+          Netbanking
+        </button>
       </div>
     </div>
   </div>
   <div class="col-4">
     <div ngbDropdown class="d-inline-block">
-      <button class="btn btn-primary"  (click) = "getBlockConf()" id="" >Apply Changes</button>
+      <button class="btn btn-primary" (click)="getBlockConf()" id="">
+        Apply Changes
+      </button>
     </div>
   </div>
-
 </div>
 
 <div class="card container">
   <div class="row">
-      <div class="col-9">
-  
-    <button
-    type="button"
-    class="btn btn-outline-primary"
-    (click)="collapse.toggle()"
-    [attr.aria-expanded]="!isCollapsed"
-    aria-controls="collapseExample"
-  >
-    {{ isCollapsed ? "expand" : "collapse" }} {{ type }}
-  </button>
-</div>
+    <div class="col-9">
+      <button
+        type="button"
+        class="btn btn-outline-primary"
+        (click)="collapse.toggle()"
+        [attr.aria-expanded]="!isCollapsed"
+        aria-controls="collapseExample"
+      >
+        {{ isCollapsed ? "expand" : "collapse" }} {{ type }}
+      </button>
+    </div>
 
-<div class="col-3">
-    <button
-    type="button"
-    class="btn btn-outline-primary"
-    (click)="removeBlock()"
-  >
-    Remove
-  </button>
-</div>
+    <div class="col-3">
+      <button
+        type="button"
+        class="btn btn-outline-primary"
+        (click)="removeBlock()"
+      >
+        Remove
+      </button>
+    </div>
+  </div>
+  <br />
 
-</div>
-<br/>
   <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
     <div class="card">
       <div class="card-body">
-       <div  *ngFor="let block of paymentBlockList; let index = index">
-        <div *ngIf="block.type == 'card'"><app-card-block  #dynamicSubBlock> </app-card-block></div>
-        <div *ngIf="block.type == 'netbanking'"> <app-netbanking-block  #dynamicSubBlock> </app-netbanking-block></div>
+        <div *ngFor="let block of paymentBlockList; let index = index">
+          <div *ngIf="block.type == 'card'">
+            <app-card-block #dynamicSubBlock> </app-card-block>
+          </div>
+          <div *ngIf="block.type == 'netbanking'">
+            <app-netbanking-block #dynamicSubBlock> </app-netbanking-block>
+          </div>
+        </div>
       </div>
-    </div>
     </div>
   </div>
 </div>
-
-
