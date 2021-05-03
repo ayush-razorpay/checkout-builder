@@ -1,7 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { BlockBuilderServiceService } from 'src/app/block-builder/block-builder-service.service';
 import { PaymentInstrument } from '../PaymentBlockModels';
-
+import { v4 as uuidv4 } from "uuid";
 
 @Component({
   selector: 'app-payment-block',
@@ -13,7 +12,7 @@ export class PaymentBlockComponent extends PaymentInstrument implements OnInit {
 
   @ViewChild('dynamicSubBlock') dynamicSubBlock: PaymentInstrument;
 
-  constructor(private blockBuilderService:BlockBuilderServiceService) {
+  constructor() {
     super();
    }
 
@@ -25,9 +24,11 @@ export class PaymentBlockComponent extends PaymentInstrument implements OnInit {
   @Input() type : string ;
   @Input() id : string ;
 
+   paymentBlockList = new Array();
 
-  addABlock(var1){
 
+  addABlock(type) {
+    this.paymentBlockList.push({ id: uuidv4(), type: type });
   }
 
   getBlockConf(){
@@ -37,7 +38,7 @@ export class PaymentBlockComponent extends PaymentInstrument implements OnInit {
   public isCollapsed = false;
 
   removeBlock(){
-    this.blockBuilderService.removeBlock(this.id);
+   
   }
 
   getConfJsob(): object {
