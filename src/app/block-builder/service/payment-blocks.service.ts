@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PaymentBlocks } from '../block-builder.component';
+import { PaymentBlock } from 'src/app/payment-blocks/PaymentBlockModels';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +8,6 @@ export class PaymentBlocksService {
 
   constructor() { }
   
-  paymentBlocks: Array<PaymentBlocks> = [];
+  paymentBlocks: Array<PaymentBlock> = [];
 
 }

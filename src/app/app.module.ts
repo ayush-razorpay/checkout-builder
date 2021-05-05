@@ -22,6 +22,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FormlyFieldInput } from './formly-field-input';
 import { CodeEditorModule } from '@ngstack/code-editor';
 import { CodeEditorComponent } from './code-editor/code-editor.component';
+import { InstrumentBlockComponent } from './payment-blocks/instrument-block/instrument-block.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { CodeEditorComponent } from './code-editor/code-editor.component';
     NetbankingBlockComponent,
     PaymentBlockComponent,
     FormlyFieldInput,
-    CodeEditorComponent
+    CodeEditorComponent,
+    InstrumentBlockComponent
     
     
   ],

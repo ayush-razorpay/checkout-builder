@@ -1,0 +1,41 @@
+<!-- <div class="card container">
+    <div class="row">
+      <div class="col-9">
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          (click)="collapse.toggle()"
+          [attr.aria-expanded]="!isCollapsed"
+          aria-controls="collapseExample"
+        >
+          {{ isCollapsed ? "expand" : "collapse" }} {{ type }}
+        </button>
+      </div>
+  
+      <div class="col-3">
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          (click)="removeBlock()"
+        >
+          Remove
+        </button>
+      </div>
+    </div>
+    <br />
+  
+    <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+      <div class="card">
+        <div class="card-body">
+        
+            <div *ngIf="name == 'card'">
+              <app-card-block #dynamicSubBlock> </app-card-block>
+            </div>
+            <div *ngIf="name == 'netbanking'">
+              <app-netbanking-block #dynamicSubBlock> </app-netbanking-block>
+            </div>
+         
+        </div>
+      </div>
+    </div>
+  </div> -->

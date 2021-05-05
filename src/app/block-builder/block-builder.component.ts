@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import { DemoServiceService } from "../checkout-demo/service/demo-service.service";
 import { CdkDragDrop, moveItemInArray } from "@angular/cdk/drag-drop";
 import { PaymentBlocksService } from "./service/payment-blocks.service";
+import { PaymentBlock } from "../payment-blocks/PaymentBlockModels";
 
 @Component({
   selector: "app-block-builder",
@@ -22,48 +23,9 @@ export class BlockBuilderComponent implements OnInit {
 
   ngOnInit(): void {
     let uid = uuidv4();
-    this.blocksService.paymentBlocks.push({
-      name: "Block",
-      id: uid,
-      status: true,
-    });
+    this.blocksService.paymentBlocks.push(new PaymentBlock("Block", uid, true));
     this.currentlyEditing = uid;
   }
-
-  // paymentBlocks: Array<PaymentBlocks> = [];
-
-  // getBlockConf() {
-  //   let temp = new Array();
-
-  //   this.dynamicInsert.toArray().forEach((x) => temp.push(x.getConfJsob()));
-
-  //   let var1 = {
-  //     display: {
-  //       blocks: {
-  //         block1: {
-  //           name: "Ayush",
-  //           instruments: temp,
-  //         },
-  //       },
-  //       sequence: [
-  //         "block.block1",
-  //         // "block.other"
-  //       ],
-  //       preferences: {
-  //         show_default_blocks: false,
-  //       },
-  //     },
-  //   };
-  //   this.updateDemo(var1);
-  // }
-
-  // updateDemo(obj) {
-  //   this.demoService.updateDemoComponentConfig(obj);
-  // }
-
-  // drop(event: CdkDragDrop<string[]>) {
-  //   moveItemInArray(this.service.paymentBlockList, event.previousIndex, event.currentIndex);
-  // }
 
   drop1(event: CdkDragDrop<string[]>) {
     moveItemInArray(
@@ -80,7 +42,7 @@ export class BlockBuilderComponent implements OnInit {
     }
     let id = uuidv4();
     let name = "Block ";
-    this.blocksService.paymentBlocks.push({ name: name, id: id, status: true });
+    this.blocksService.paymentBlocks.push(new PaymentBlock(name, id, true));
     this.selectBlockToEdit(id);
   }
 
@@ -90,15 +52,9 @@ export class BlockBuilderComponent implements OnInit {
         x.status = false;
       } else {
         x.status = true;
-
         this.currentlyEditing = x.id;
       }
     });
   }
-}
-
-export class PaymentBlocks {
-  name: string;
-  id: string;
-  status: boolean;
+  
 }

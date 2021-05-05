@@ -23,44 +23,8 @@
   </div>
 </div>
 
-<div class="card container">
-  <div class="row">
-    <div class="col-9">
-      <button
-        type="button"
-        class="btn btn-outline-primary"
-        (click)="collapse.toggle()"
-        [attr.aria-expanded]="!isCollapsed"
-        aria-controls="collapseExample"
-      >
-        {{ isCollapsed ? "expand" : "collapse" }} {{ type }}
-      </button>
-    </div>
+<div *ngFor="let block of paymentBlockService.paymentBlocks; let index = index">
 
-    <div class="col-3">
-      <button
-        type="button"
-        class="btn btn-outline-primary"
-        (click)="removeBlock()"
-      >
-        Remove
-      </button>
-    </div>
+  <app-instrument-block></app-instrument-block>
   </div>
-  <br />
 
-  <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
-    <div class="card">
-      <div class="card-body">
-        <div *ngFor="let block of paymentBlockList; let index = index">
-          <div *ngIf="block.type == 'card'">
-            <app-card-block #dynamicSubBlock> </app-card-block>
-          </div>
-          <div *ngIf="block.type == 'netbanking'">
-            <app-netbanking-block #dynamicSubBlock> </app-netbanking-block>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
