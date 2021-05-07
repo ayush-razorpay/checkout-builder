@@ -122,6 +122,10 @@
               "devServerTarget": "rzp-checkout-builder:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
     }

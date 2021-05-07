@@ -2,16 +2,18 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { GetMethodsService } from 'src/app/data-services/get-methods.service';
-import { PaymentBlockInterface } from '../PaymentBlocksInterface';
+import { PaymentInstrument } from '../PaymentBlockModels';
 
 @Component({
   selector: 'app-card-block',
   templateUrl: './card-block.component.html',
   styleUrls: ['./card-block.component.css']
 })
-export class CardBlockComponent implements OnInit,PaymentBlockInterface {
+export class CardBlockComponent extends PaymentInstrument implements OnInit {
 
-  constructor(private getPaymentMethods : GetMethodsService) { }
+  constructor(private getPaymentMethods : GetMethodsService) { 
+    super();
+  }
   
 
 
@@ -49,6 +51,11 @@ export class CardBlockComponent implements OnInit,PaymentBlockInterface {
 
   fields: FormlyFieldConfig[] = [
     {
+      
+        fieldGroupClassName: "row",
+        fieldGroup: [
+    {
+      className: 'col-6',
       key: 'issuerAgree',
       type: 'checkbox',
       defaultValue:true,
@@ -59,6 +66,7 @@ export class CardBlockComponent implements OnInit,PaymentBlockInterface {
       },
     },
     {
+      className: 'col-6',
       key: 'issuers',
       type: 'select',
       templateOptions: {
@@ -71,7 +79,7 @@ export class CardBlockComponent implements OnInit,PaymentBlockInterface {
       },
     },
     {
-      className: 'col-3',
+      className: 'col-6',
       key: 'networkAgree',
       type: 'checkbox',
       defaultValue:true,
@@ -82,7 +90,7 @@ export class CardBlockComponent implements OnInit,PaymentBlockInterface {
       },
     },
     {
-      className: 'col-3',
+      className: 'col-6',
       key: 'networks',
       type: 'select',
       templateOptions: {
@@ -97,6 +105,7 @@ export class CardBlockComponent implements OnInit,PaymentBlockInterface {
       
     },
     {
+      className: 'col-6',
       key: 'typeAgree',
       type: 'checkbox',
       defaultValue:true,
@@ -108,7 +117,7 @@ export class CardBlockComponent implements OnInit,PaymentBlockInterface {
     },
     
     {
-      className: 'col-3',
+      className: 'col-6',
       key: 'types',
       type: 'select',
       templateOptions: {
@@ -120,6 +129,7 @@ export class CardBlockComponent implements OnInit,PaymentBlockInterface {
         'templateOptions.disabled': 'model.typeAgree',
       },
     }
+        ]}
   ];
 
 
