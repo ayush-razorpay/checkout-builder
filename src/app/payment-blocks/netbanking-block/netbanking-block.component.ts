@@ -2,16 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { GetMethodsService } from 'src/app/data-services/get-methods.service';
-import { PaymentBlockInterface } from '../PaymentBlocksInterface';
+import { PaymentInstrument } from '../PaymentBlockModels';
+
+
 
 @Component({
   selector: 'app-netbanking-block',
   templateUrl: './netbanking-block.component.html',
   styleUrls: ['./netbanking-block.component.css']
 })
-export class NetbankingBlockComponent implements OnInit,PaymentBlockInterface {
+export class NetbankingBlockComponent extends PaymentInstrument implements OnInit {
 
-  constructor(private getPaymentMethods : GetMethodsService) { }
+  constructor(private getPaymentMethods : GetMethodsService) {
+    super();
+   }
 
   issuerOptions = new Array();
 
@@ -36,6 +40,10 @@ export class NetbankingBlockComponent implements OnInit,PaymentBlockInterface {
 
   fields: FormlyFieldConfig[] = [
     {
+      
+      fieldGroupClassName: "row",
+      fieldGroup: [
+    {
       key: 'issuerAgree',
       type: 'checkbox',
       defaultValue:true,
@@ -56,7 +64,7 @@ export class NetbankingBlockComponent implements OnInit,PaymentBlockInterface {
       expressionProperties: {
         'templateOptions.disabled': 'model.issuerAgree',
       },
-    }
+    }]}
   ];
 
 
