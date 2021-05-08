@@ -20,8 +20,13 @@ import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FormlyFieldInput } from './formly-field-input';
+import { UpiBlockComponent } from './payment-blocks/upi-block/upi-block.component';
+import { WalletBlockComponent } from './payment-blocks/wallet-block/wallet-block.component';
+import { CardlessEmiBlockComponent } from './payment-blocks/cardless-emi-block/cardless-emi-block.component';
+import { PaylaterBlockComponent } from './payment-blocks/paylater-block/paylater-block.component';
 import { CodeEditorModule } from '@ngstack/code-editor';
 import { CodeEditorComponent } from './code-editor/code-editor.component';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +41,12 @@ import { CodeEditorComponent } from './code-editor/code-editor.component';
     NetbankingBlockComponent,
     PaymentBlockComponent,
     FormlyFieldInput,
+    UpiBlockComponent,
+    WalletBlockComponent,
+    CardlessEmiBlockComponent,
+    PaylaterBlockComponent,
     CodeEditorComponent
+
     
     
   ],

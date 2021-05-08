@@ -31,7 +31,10 @@
        
         <div *ngIf="type == 'card'"><app-card-block  #dynamicSubBlock> </app-card-block></div>
         <div *ngIf="type == 'netbanking'"> <app-netbanking-block  #dynamicSubBlock> </app-netbanking-block></div>
-      
+        <div *ngIf="type == 'upi'"> <app-upi-block  #dynamicSubBlock> </app-upi-block></div>
+        <div *ngIf="type == 'wallet'"> <app-wallet-block  #dynamicSubBlock> </app-wallet-block></div>
+        <div *ngIf="type == 'cardlessemi'"> <app-cardless-emi-block  #dynamicSubBlock> </app-cardless-emi-block></div>
+        <div *ngIf="type == 'paylater'"> <app-paylater-block  #dynamicSubBlock> </app-paylater-block></div>
     </div>
     </div>
   </div>
