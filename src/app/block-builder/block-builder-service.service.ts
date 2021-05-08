@@ -7,25 +7,6 @@ import { DemoServiceService } from "../checkout-demo/service/demo-service.servic
 export class BlockBuilderServiceService {
   constructor(private demoCheckoutService: DemoServiceService) {}
 
-  //    var1 = {
-  //     display: {
-  //       blocks: {
-  //         block1: {
-  //           name: "Ayush",
-  //           instruments: []
-  //         },
-
-  //       },
-  //       sequence: [
-  //          "block.block1",
-  //         // "block.other"
-  //       ],
-  //       preferences: {
-  //         show_default_blocks: false
-  //       }
-  //     }
-  // };
-
   public paymentBlockList = new Array();
 
   private paymentsConfigList = new Array();
@@ -50,13 +31,12 @@ export class BlockBuilderServiceService {
         display: {
           blocks: {
             block1: {
-              name: "Ayush",
+              name: "Payment Methods",
               instruments: this.paymentsConfigList,
             },
           },
           sequence: [
             "block.block1",
-            // "block.other"
           ],
           preferences: {
             show_default_blocks: false,

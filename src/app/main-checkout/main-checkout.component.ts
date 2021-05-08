@@ -19,7 +19,8 @@ export class MainCheckoutComponent implements OnInit {
     { label: "Payment Link Id  ", value: "payment_link_id", id: 4 },
   ];
 
-  constructor(private demoCheckoutService: DemoServiceService, private getMethodsService : GetMethodsService) {}
+  constructor(private demoCheckoutService: DemoServiceService, 
+    private getMethodsService : GetMethodsService) {}
 
   
   ngOnInit(): void {
@@ -31,8 +32,10 @@ export class MainCheckoutComponent implements OnInit {
 
       x.theme = { color: x.color };
       delete x["color"];
+      
       this.getMethodsService.updateApiKey(y.key);
-      x.config =  this.model.config;
+      x.config =  this.model.config;      
+
       this.demoCheckoutService.updateDemoComponent(x);
     });
   }

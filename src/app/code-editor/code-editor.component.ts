@@ -17,13 +17,26 @@ export class CodeEditorComponent implements OnInit {
 
   @ViewChild("editor") private editor: ElementRef<HTMLElement>;
 
+  toPatch = {};
+
   ngAfterViewInit(): void {
     ace.config.set("fontSize", "14px");
     ace.config.set('basePath', 'https://unpkg.com/ace-builds@1.4.12/src-noconflict');
 
     const aceEditor = ace.edit(this.editor.nativeElement);
-    aceEditor.setTheme("ace/theme/twilight");
-    
+    aceEditor.setTheme("ace/theme/twilight"); 
+
+    let var1 = this.demoService.configcheckoutObject;
+    this.toPatch = {
+      "tnxType": var1.tnxType,
+      "tnx_id": var1.tnx_id,
+      "enableTimeout" : var1.enableTimeout
+    }
+
+    delete var1['tnxType'];
+    delete var1['tnx_id'];
+    delete var1['enableTimeout'];
+
     aceEditor.session.setValue(
       JSON.stringify(this.demoService.configcheckoutObject,null,'\t')
     );
@@ -33,19 +46,16 @@ export class CodeEditorComponent implements OnInit {
     aceEditor.getSession().setTabSize(2);
     aceEditor.getSession().setUseWrapMode(true);
     aceEditor.on("blur", () => {
-     // console.log(aceEditor.getValue());
-      
-      //this.demoService.updateTheConfigJson( JSON.parse(aceEditor.getValue()));
     });
 
     aceEditor.commands.on('afterExec', eventData => {
       if (eventData.command.name === 'insertstring') {
-        
-
         console.log(aceEditor.getValue());
         
         if (this.IsJsonString(aceEditor.getValue()) == true){
-        this.demoService.updateTheConfigJson( JSON.parse(aceEditor.getValue()));
+
+          let toSet ={...this.toPatch,  ...JSON.parse(aceEditor.getValue()) };
+        this.demoService.updateTheConfigJson(toSet);
         }
       }
   });
