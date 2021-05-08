@@ -29,8 +29,8 @@
     <div class="card">
       <div class="card-body">
        
-        <div *ngIf="type == 'card'"><app-card-block  #dynamicSubBlock> </app-card-block></div>
-        <div *ngIf="type == 'netbanking'"> <app-netbanking-block  #dynamicSubBlock> </app-netbanking-block></div>
+        <div *ngIf="type == 'card'"><app-card-block  id="{{id}}" #dynamicSubBlock> </app-card-block></div>
+        <div *ngIf="type == 'netbanking'"> <app-netbanking-block id="{{id}}"  #dynamicSubBlock> </app-netbanking-block></div>
       
     </div>
     </div>
