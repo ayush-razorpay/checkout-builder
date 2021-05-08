@@ -18,13 +18,14 @@ export class CodeEditorComponent implements OnInit {
   @ViewChild("editor") private editor: ElementRef<HTMLElement>;
 
   toPatch = {};
-
+  aceEditor ;
   ngAfterViewInit(): void {
     ace.config.set("fontSize", "14px");
     ace.config.set('basePath', 'https://unpkg.com/ace-builds@1.4.12/src-noconflict');
 
-    const aceEditor = ace.edit(this.editor.nativeElement);
-    aceEditor.setTheme("ace/theme/twilight"); 
+    //const 
+    this.aceEditor = ace.edit(this.editor.nativeElement);
+    this.aceEditor.setTheme("ace/theme/twilight"); 
 
     let var1 = this.demoService.configcheckoutObject;
     this.toPatch = {
@@ -37,24 +38,24 @@ export class CodeEditorComponent implements OnInit {
     delete var1['tnx_id'];
     delete var1['enableTimeout'];
 
-    aceEditor.session.setValue(
+    this.aceEditor.session.setValue(
       JSON.stringify(this.demoService.configcheckoutObject,null,'\t')
     );
  
 
-    aceEditor.getSession().setMode("ace/mode/javascript");
-    aceEditor.getSession().setTabSize(2);
-    aceEditor.getSession().setUseWrapMode(true);
-    aceEditor.on("blur", () => {
+    this.aceEditor.getSession().setMode("ace/mode/javascript");
+    this.aceEditor.getSession().setTabSize(2);
+    this.aceEditor.getSession().setUseWrapMode(true);
+    this.aceEditor.on("blur", () => {
     });
 
-    aceEditor.commands.on('afterExec', eventData => {
+    this.aceEditor.commands.on('afterExec', eventData => {
       if (eventData.command.name === 'insertstring') {
-        console.log(aceEditor.getValue());
+        console.log(this.aceEditor.getValue());
         
-        if (this.IsJsonString(aceEditor.getValue()) == true){
+        if (this.IsJsonString(this.aceEditor.getValue()) == true){
 
-          let toSet ={...this.toPatch,  ...JSON.parse(aceEditor.getValue()) };
+          let toSet ={...this.toPatch,  ...JSON.parse(this.aceEditor.getValue()) };
         this.demoService.updateTheConfigJson(toSet);
         }
       }
@@ -68,5 +69,16 @@ export class CodeEditorComponent implements OnInit {
         return false;
     }
     return true;
+}
+
+copy(){
+
+  const el = document.createElement('textarea');
+  el.value = this.aceEditor.getValue();
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand('copy');
+  document.body.removeChild(el);
+
 }
 }
