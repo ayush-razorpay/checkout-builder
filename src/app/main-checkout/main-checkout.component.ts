@@ -20,7 +20,6 @@ export class MainCheckoutComponent implements OnInit {
 
   constructor(private demoCheckoutService: DemoServiceService) {}
 
-  
   ngOnInit(): void {
 
    this.model= this.demoCheckoutService.getconfigcheckoutMode();
@@ -38,6 +37,12 @@ export class MainCheckoutComponent implements OnInit {
   }
 
   form = new FormGroup({});
+  // model: any = {
+  //   tnxType: "order_id",
+  //   color: "#1a6534",
+  //   image:
+  //     "https://rzp-prod-outline-wiki.s3-ap-southeast-1.amazonaws.com/favicon.png",
+  // };
   
   model;
   options: FormlyFormOptions = {};

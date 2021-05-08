@@ -1,34 +1,14 @@
-<div
-  cdkDropList
-  cdkDropListOrientation="horizontal"
-  class="example-list"
-  (cdkDropListDropped)="drop1($event)"
->
-  <button
-    type="button"
-    class=""
-    (click)="selectBlockToEdit(block.id)"
-    *ngFor="let block of this.blocksService.paymentBlocks; let index = index"
-
-    [ngClass]="block.status ? 'example-box ex1 btn btn-light ' : 'example-box ex1 btn btn-light'"
-    data-toggle="button" aria-pressed="false" autocomplete="off"
-    cdkDrag
-  >
-    {{ block.name }}-{{index+1}}
-  </button>
-
-  <button class="btn btn-dark" (click)="addPaymentBlock()" id="">Add</button>
-</div>
-
-<!-- {{ paymentBlocks | json }} -->
-
-<!-- <div class="row">
+<div class="row">
     <div class="col-8">
       <div ngbDropdown class="d-inline-block">
         <button class="btn btn-primary" id="dropdownForm1" ngbDropdownToggle>Add Instrument</button>
         <div ngbDropdownMenu aria-labelledby="dropdownForm1">
           <button (click) = "addABlock('card')" ngbDropdownItem>Card</button>
           <button (click) = "addABlock('netbanking')" ngbDropdownItem>Netbanking</button>
+          <button (click) = "addABlock('upi')" ngbDropdownItem>Upi</button>
+          <button (click) = "addABlock('wallet')" ngbDropdownItem>Wallet</button>
+          <button (click) = "addABlock('cardlessemi')" ngbDropdownItem>Cardless EMI</button>
+          <button (click) = "addABlock('paylater')" ngbDropdownItem>Paylater</button>
         </div>
       </div>
     </div>
@@ -47,10 +27,4 @@
     <app-payment-block  #dynamicInsert type={{paymentBlock.type}}  id= {{paymentBlock.id}} ></app-payment-block >
 
   </div>
-</div> -->
-
-<div>
-
-<app-payment-block  #dynamicInsert  id= "{{ currentlyEditing }}" ></app-payment-block >
-
 </div>

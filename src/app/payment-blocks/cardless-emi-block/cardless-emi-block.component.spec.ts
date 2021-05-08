@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InstrumentBlockComponent } from './instrument-block.component';
+import { CardlessEmiBlockComponent } from './cardless-emi-block.component';
 
-describe('InstrumentBlockComponent', () => {
-  let component: InstrumentBlockComponent;
-  let fixture: ComponentFixture<InstrumentBlockComponent>;
+describe('CardlessEmiBlockComponent', () => {
+  let component: CardlessEmiBlockComponent;
+  let fixture: ComponentFixture<CardlessEmiBlockComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ InstrumentBlockComponent ]
+      declarations: [ CardlessEmiBlockComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(InstrumentBlockComponent);
+    fixture = TestBed.createComponent(CardlessEmiBlockComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

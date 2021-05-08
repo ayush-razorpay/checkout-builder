@@ -1,10 +1,14 @@
-import { Component, OnInit, QueryList, ViewChildren } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  QueryList,
+  ViewChildren,
+} from "@angular/core";
 import { PaymentBlockComponent } from "../payment-blocks/payment-block/payment-block.component";
 import { v4 as uuidv4 } from "uuid";
+import { BlockBuilderServiceService } from "./block-builder-service.service";
 import { DemoServiceService } from "../checkout-demo/service/demo-service.service";
-import { CdkDragDrop, moveItemInArray } from "@angular/cdk/drag-drop";
-import { PaymentBlocksService } from "./service/payment-blocks.service";
-import { PaymentBlock } from "../payment-blocks/PaymentBlockModels";
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: "app-block-builder",
@@ -15,46 +19,56 @@ export class BlockBuilderComponent implements OnInit {
   @ViewChildren("dynamicInsert")
   dynamicInsert: QueryList<PaymentBlockComponent>;
 
-  currentlyEditing;
+  constructor(
+    public service: BlockBuilderServiceService,
+    private demoService: DemoServiceService
+  ) {}
 
-  constructor(public blocksService: PaymentBlocksService) {}
+  ngOnInit(): void {}
 
-  readonly maxLength = 4;
+  addABlock(type) {
+    console.log("method called");
 
-  ngOnInit(): void {
-    let uid = uuidv4();
-    this.blocksService.paymentBlocks.push(new PaymentBlock("Block", uid, true));
-    this.currentlyEditing = uid;
+    this.service.paymentBlockList.push({ id: uuidv4(), type: type });
   }
 
-  drop1(event: CdkDragDrop<string[]>) {
-    moveItemInArray(
-      this.blocksService.paymentBlocks,
-      event.previousIndex,
-      event.currentIndex
-    );
+  getBlockConf() {
+    let temp = new Array();
+    
+
+    this.dynamicInsert.toArray().forEach((x) => temp.push(x.getConfJsob()));
+
+    let var1 = {
+
+        display: {
+          blocks: {
+            block1: {
+              name: "Ayush",
+              instruments: temp
+            },
+
+          },
+          sequence: [
+             "block.block1",
+            // "block.other"
+          ],
+          preferences: {
+            show_default_blocks: false
+          }
+        }
+    };
+    this.updateDemo(var1);
+    console.log("-----------------------------", var1);
   }
 
-  addPaymentBlock() {
-    if (this.blocksService.paymentBlocks.length >= this.maxLength) {
-      alert("Cannot add more payment blocks");
-      return;
-    }
-    let id = uuidv4();
-    let name = "Block ";
-    this.blocksService.paymentBlocks.push(new PaymentBlock(name, id, true));
-    this.selectBlockToEdit(id);
+  updateDemo(obj) {
+    this.demoService.updateDemoComponentConfig(obj);
   }
 
-  selectBlockToEdit(id) {
-    this.blocksService.paymentBlocks.forEach((x) => {
-      if (x.id != id) {
-        x.status = false;
-      } else {
-        x.status = true;
-        this.currentlyEditing = x.id;
-      }
-    });
+
+
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.service.paymentBlockList, event.previousIndex, event.currentIndex);
   }
-  
 }

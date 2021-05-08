@@ -1,30 +1,41 @@
-{{ id | json }}
+<div class="card container">
+  <div class="row">
+      <div class="col-9">
+  
+    <button
+    type="button"
+    class="btn btn-outline-primary"
+    (click)="collapse.toggle()"
+    [attr.aria-expanded]="!isCollapsed"
+    aria-controls="collapseExample"
+  >
+    {{ isCollapsed ? "expand" : "collapse" }} {{ type }}
+  </button>
+</div>
 
-<div class="row">
-  <div class="col-8">
-    <div ngbDropdown class="d-inline-block">
-      <button class="btn btn-primary" id="dropdownForm1" ngbDropdownToggle>
-        Add Instrument
-      </button>
-      <div ngbDropdownMenu aria-labelledby="dropdownForm1">
-        <button (click)="addABlock('card')" ngbDropdownItem>Card</button>
-        <button (click)="addABlock('netbanking')" ngbDropdownItem>
-          Netbanking
-        </button>
-      </div>
+<div class="col-3">
+    <button
+    type="button"
+    class="btn btn-outline-primary"
+    (click)="removeBlock()"
+  >
+    Remove
+  </button>
+</div>
+
+</div>
+<br/>
+  <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+    <div class="card">
+      <div class="card-body">
+       
+        <div *ngIf="type == 'card'"><app-card-block  #dynamicSubBlock> </app-card-block></div>
+        <div *ngIf="type == 'netbanking'"> <app-netbanking-block  #dynamicSubBlock> </app-netbanking-block></div>
+        <div *ngIf="type == 'upi'"> <app-upi-block  #dynamicSubBlock> </app-upi-block></div>
+        <div *ngIf="type == 'wallet'"> <app-wallet-block  #dynamicSubBlock> </app-wallet-block></div>
+        <div *ngIf="type == 'cardlessemi'"> <app-cardless-emi-block  #dynamicSubBlock> </app-cardless-emi-block></div>
+        <div *ngIf="type == 'paylater'"> <app-paylater-block  #dynamicSubBlock> </app-paylater-block></div>
     </div>
-  </div>
-  <div class="col-4">
-    <div ngbDropdown class="d-inline-block">
-      <button class="btn btn-primary" (click)="getBlockConf()" id="">
-        Apply Changes
-      </button>
     </div>
   </div>
 </div>
-
-<div *ngFor="let block of paymentBlockService.paymentBlocks; let index = index">
-
-  <app-instrument-block></app-instrument-block>
-  </div>
-

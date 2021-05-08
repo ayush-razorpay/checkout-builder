@@ -20,9 +20,11 @@ import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FormlyFieldInput } from './formly-field-input';
-import { CodeEditorModule } from '@ngstack/code-editor';
-import { CodeEditorComponent } from './code-editor/code-editor.component';
-import { InstrumentBlockComponent } from './payment-blocks/instrument-block/instrument-block.component';
+import { UpiBlockComponent } from './payment-blocks/upi-block/upi-block.component';
+import { WalletBlockComponent } from './payment-blocks/wallet-block/wallet-block.component';
+import { CardlessEmiBlockComponent } from './payment-blocks/cardless-emi-block/cardless-emi-block.component';
+import { PaylaterBlockComponent } from './payment-blocks/paylater-block/paylater-block.component';
+
 
 @NgModule({
   declarations: [
@@ -37,8 +39,11 @@ import { InstrumentBlockComponent } from './payment-blocks/instrument-block/inst
     NetbankingBlockComponent,
     PaymentBlockComponent,
     FormlyFieldInput,
-    CodeEditorComponent,
-    InstrumentBlockComponent
+    UpiBlockComponent,
+    WalletBlockComponent,
+    CardlessEmiBlockComponent,
+    PaylaterBlockComponent,
+    
     
     
   ],
@@ -58,8 +63,7 @@ import { InstrumentBlockComponent } from './payment-blocks/instrument-block/inst
       types: [
         { name: 'colorPicker', component: FormlyFieldInput },
       ]
-    }),
-    CodeEditorModule.forRoot()    
+    }),    
   ],
   providers: [DemoServiceService],
   bootstrap: [AppComponent]
