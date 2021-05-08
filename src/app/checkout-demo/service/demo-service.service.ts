@@ -61,6 +61,21 @@ export class DemoServiceService {
 
   }
 
+  updateTheConfigJson(r : any){
+  
+    this.configcheckoutObject= {...r,...this.configcheckoutObject};
+
+  let x=  JSON.stringify(this.configcheckoutObject)
+
+   this.checkoutUrl='https://ayush-razorpay.github.io/ayush-razorpay/test.html?'+'request_identifier='+Math.random()+'&data='+encodeURI(x);
+
+   console.log("------",this.checkoutUrl);
+   
+   this.setValue(this.checkoutUrl);
+
+  }
+
+
 
   getconfigcheckoutMode(){
 

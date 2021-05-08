@@ -2,23 +2,27 @@
 
 <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
     <li [ngbNavItem]="1">
-      <a ngbNavLink>Main</a>
+      <a ngbNavLink>Initilize Checkout</a>
       <ng-template ngbNavContent>
         <app-main-checkout></app-main-checkout>
         </ng-template>
     </li>
     <li [ngbNavItem]="2">
-      <a ngbNavLink>Config</a>
+      <a ngbNavLink>Configure Payment Block</a>
       <ng-template ngbNavContent>
-     <app-block-builder></app-block-builder>
-
-     
+     <app-block-builder></app-block-builder> 
       </ng-template>
     </li>
     <li [ngbNavItem]="3">
-      <a ngbNavLink>Three</a>
+      <a ngbNavLink>Additional Configs</a>
       <ng-template ngbNavContent>
-        --------------
+        <app-code-editor></app-code-editor>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="4">
+      <a ngbNavLink>View Config Json</a>
+      <ng-template ngbNavContent>
+        <app-code-editor></app-code-editor>
       </ng-template>
     </li>
   </ul>

@@ -24,6 +24,8 @@ import { UpiBlockComponent } from './payment-blocks/upi-block/upi-block.componen
 import { WalletBlockComponent } from './payment-blocks/wallet-block/wallet-block.component';
 import { CardlessEmiBlockComponent } from './payment-blocks/cardless-emi-block/cardless-emi-block.component';
 import { PaylaterBlockComponent } from './payment-blocks/paylater-block/paylater-block.component';
+import { CodeEditorModule } from '@ngstack/code-editor';
+import { CodeEditorComponent } from './code-editor/code-editor.component';
 
 
 @NgModule({
@@ -43,7 +45,8 @@ import { PaylaterBlockComponent } from './payment-blocks/paylater-block/paylater
     WalletBlockComponent,
     CardlessEmiBlockComponent,
     PaylaterBlockComponent,
-    
+    CodeEditorComponent
+
     
     
   ],
@@ -63,7 +66,8 @@ import { PaylaterBlockComponent } from './payment-blocks/paylater-block/paylater
       types: [
         { name: 'colorPicker', component: FormlyFieldInput },
       ]
-    }),    
+    }),
+    CodeEditorModule.forRoot()    
   ],
   providers: [DemoServiceService],
   bootstrap: [AppComponent]
