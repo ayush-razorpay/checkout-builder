@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
+import { BlockBuilderServiceService } from 'src/app/block-builder/block-builder-service.service';
 import {  PaymentInstrument } from '../PaymentBlockModels';
 
 @Component({
@@ -9,9 +10,13 @@ import {  PaymentInstrument } from '../PaymentBlockModels';
   styleUrls: ['./upi-block.component.css']
 })
 export class UpiBlockComponent extends PaymentInstrument implements OnInit {
-  constructor() { 
+  constructor(private blockBuilderServiceService : BlockBuilderServiceService) { 
     super();
+    this.form.valueChanges.subscribe(x=>{
+      this.blockBuilderServiceService.updateSubcomponentChange(this.id,this.getConfJsob());
+    })
   }
+  @Input() id : string ;
   upiFlows = new Array({label:"Collect",value:"collect"},{label:"UPI-QR",value:"qr"});
   ngOnInit(): void {
   }

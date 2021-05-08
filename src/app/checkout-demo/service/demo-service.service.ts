@@ -46,9 +46,10 @@ export class DemoServiceService {
 
   }
 
-
+//for block builder
   updateDemoComponentConfig(r : any){
   
+    console.log("block builder JSON",r);
     this.configcheckoutObject.config= r;
 
   let x=  JSON.stringify(this.configcheckoutObject)
@@ -61,6 +62,7 @@ export class DemoServiceService {
 
   }
 
+  //for code editor
   updateTheConfigJson(r : any){
   
     this.configcheckoutObject= {...r,...this.configcheckoutObject};

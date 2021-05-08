@@ -29,12 +29,12 @@
     <div class="card">
       <div class="card-body">
        
-        <div *ngIf="type == 'card'"><app-card-block  #dynamicSubBlock> </app-card-block></div>
-        <div *ngIf="type == 'netbanking'"> <app-netbanking-block  #dynamicSubBlock> </app-netbanking-block></div>
-        <div *ngIf="type == 'upi'"> <app-upi-block  #dynamicSubBlock> </app-upi-block></div>
-        <div *ngIf="type == 'wallet'"> <app-wallet-block  #dynamicSubBlock> </app-wallet-block></div>
-        <div *ngIf="type == 'cardlessemi'"> <app-cardless-emi-block  #dynamicSubBlock> </app-cardless-emi-block></div>
-        <div *ngIf="type == 'paylater'"> <app-paylater-block  #dynamicSubBlock> </app-paylater-block></div>
+        <div *ngIf="type == 'card'"><app-card-block id="{{id}}"  #dynamicSubBlock> </app-card-block></div>
+        <div *ngIf="type == 'netbanking'"> <app-netbanking-block id="{{id}}" #dynamicSubBlock> </app-netbanking-block></div>
+        <div *ngIf="type == 'upi'"> <app-upi-block id="{{id}}" #dynamicSubBlock> </app-upi-block></div>
+        <div *ngIf="type == 'wallet'"> <app-wallet-block id="{{id}}" #dynamicSubBlock> </app-wallet-block></div>
+        <div *ngIf="type == 'cardlessemi'"> <app-cardless-emi-block id="{{id}}" #dynamicSubBlock> </app-cardless-emi-block></div>
+        <div *ngIf="type == 'paylater'"> <app-paylater-block id="{{id}}" #dynamicSubBlock> </app-paylater-block></div>
     </div>
     </div>
   </div>

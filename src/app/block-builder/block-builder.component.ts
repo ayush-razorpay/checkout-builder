@@ -27,8 +27,6 @@ export class BlockBuilderComponent implements OnInit {
   ngOnInit(): void {}
 
   addABlock(type) {
-    console.log("method called");
-
     this.service.paymentBlockList.push({ id: uuidv4(), type: type });
   }
 

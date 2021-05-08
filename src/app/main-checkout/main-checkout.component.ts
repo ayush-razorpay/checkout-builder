@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { FormlyFieldConfig, FormlyFormOptions } from "@ngx-formly/core";
 import { DemoServiceService } from "../checkout-demo/service/demo-service.service";
+import { GetMethodsService } from "../data-services/get-methods.service";
 
 @Component({
   selector: "app-main-checkout",
@@ -18,21 +19,20 @@ export class MainCheckoutComponent implements OnInit {
     { label: "Payment Link Id  ", value: "payment_link_id", id: 4 },
   ];
 
-  constructor(private demoCheckoutService: DemoServiceService) {}
+  constructor(private demoCheckoutService: DemoServiceService, private getMethodsService : GetMethodsService) {}
 
   
   ngOnInit(): void {
 
    this.model= this.demoCheckoutService.getconfigcheckoutMode();
     this.model.color = this.model.theme.color;
-
-
     this.form.valueChanges.subscribe((y) => {
       let x = JSON.parse(JSON.stringify(y));
 
       x.theme = { color: x.color };
       delete x["color"];
-      
+      this.getMethodsService.updateApiKey(y.key);
+      x.config =  this.model.config;
       this.demoCheckoutService.updateDemoComponent(x);
     });
   }

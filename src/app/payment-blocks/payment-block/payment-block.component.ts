@@ -15,6 +15,7 @@ export class PaymentBlockComponent extends PaymentInstrument implements OnInit {
 
   constructor(private blockBuilderService:BlockBuilderServiceService) {
     super();
+    this.isCollapsed=false;
    }
 
 
@@ -26,7 +27,7 @@ export class PaymentBlockComponent extends PaymentInstrument implements OnInit {
   @Input() id : string ;
 
 
-  public isCollapsed = false;
+   isCollapsed = true;
 
   removeBlock(){
     this.blockBuilderService.removeBlock(this.id);

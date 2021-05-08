@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
+import { BlockBuilderServiceService } from 'src/app/block-builder/block-builder-service.service';
 import { GetMethodsService } from 'src/app/data-services/get-methods.service';
 import { PaymentInstrument } from '../PaymentBlockModels';
 
@@ -11,9 +12,13 @@ import { PaymentInstrument } from '../PaymentBlockModels';
 })
 export class CardlessEmiBlockComponent extends PaymentInstrument implements OnInit {
 
-
-  constructor(private getPaymentMethods : GetMethodsService) {
+  @Input() id : string ;
+  constructor(private getPaymentMethods : GetMethodsService,
+    private blockBuilderServiceService : BlockBuilderServiceService) {
     super();
+    this.form.valueChanges.subscribe(x=>{
+      this.blockBuilderServiceService.updateSubcomponentChange(this.id,this.getConfJsob());
+    })
   }
   cardlessOptions=new Array();
   ngOnInit(): void {

@@ -11,4 +11,5 @@
     id: string;
     type: string;
    abstract getConfJsob():object;
+
   }
