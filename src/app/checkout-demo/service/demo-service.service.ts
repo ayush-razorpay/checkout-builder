@@ -1,4 +1,4 @@
-import { ApplicationRef, ChangeDetectorRef } from '@angular/core';
+import { ApplicationRef } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
@@ -7,13 +7,9 @@ import { Observable, Subject } from 'rxjs';
 })
 export class DemoServiceService {
 
-
   configcheckoutObject : any = {
     tnxType: "order_id",
-   
-   theme:{ color: "#1a6534"},
-    image:
-      "https://rzp-prod-outline-wiki.s3-ap-southeast-1.amazonaws.com/favicon.png",
+   theme:{ color:this.getRandomColor()},
   };
 
   public urlChangeSubject  : Subject<string> = new Subject<string>();
@@ -46,9 +42,10 @@ export class DemoServiceService {
 
   }
 
-
+//for block builder
   updateDemoComponentConfig(r : any){
   
+    console.log("block builder JSON",r);
     this.configcheckoutObject.config= r;
 
   let x=  JSON.stringify(this.configcheckoutObject)
@@ -61,9 +58,10 @@ export class DemoServiceService {
 
   }
 
+  //for code editor
   updateTheConfigJson(r : any){
   
-    this.configcheckoutObject= {...r,...this.configcheckoutObject};
+    this.configcheckoutObject= r;
 
   let x=  JSON.stringify(this.configcheckoutObject)
 
@@ -83,5 +81,13 @@ export class DemoServiceService {
   }
 
 
+   getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
   
 }

@@ -26,10 +26,14 @@ export class PaymentBlockComponent extends PaymentInstrument implements OnInit {
   @Input() id : string ;
 
 
-  public isCollapsed = false;
+   isCollapsed = false;
 
   removeBlock(){
     this.blockBuilderService.removeBlock(this.id);
+  }
+
+  collapse(){
+    this.isCollapsed=true;
   }
 
   getConfJsob(): object {

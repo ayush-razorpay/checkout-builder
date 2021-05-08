@@ -1,6 +1,5 @@
 import {
   Component,
-  OnInit,
   QueryList,
   ViewChildren,
 } from "@angular/core";
@@ -9,13 +8,14 @@ import { v4 as uuidv4 } from "uuid";
 import { BlockBuilderServiceService } from "./block-builder-service.service";
 import { DemoServiceService } from "../checkout-demo/service/demo-service.service";
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import { AfterViewInit } from "@angular/core";
 
 @Component({
   selector: "app-block-builder",
   templateUrl: "./block-builder.component.html",
   styleUrls: ["./block-builder.component.css"],
 })
-export class BlockBuilderComponent implements OnInit {
+export class BlockBuilderComponent implements AfterViewInit {
   @ViewChildren("dynamicInsert")
   dynamicInsert: QueryList<PaymentBlockComponent>;
 
@@ -23,12 +23,19 @@ export class BlockBuilderComponent implements OnInit {
     public service: BlockBuilderServiceService,
     private demoService: DemoServiceService
   ) {}
+  ngAfterViewInit(): void {
+    if(this.dynamicInsert != null && this.dynamicInsert.toArray().length > 0)
+    {
+    this.dynamicInsert.toArray().forEach(x=>x.collapse());
+    }
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+ 
+  }
 
   addABlock(type) {
-    console.log("method called");
-
     this.service.paymentBlockList.push({ id: uuidv4(), type: type });
   }
 
@@ -64,9 +71,6 @@ export class BlockBuilderComponent implements OnInit {
   updateDemo(obj) {
     this.demoService.updateDemoComponentConfig(obj);
   }
-
-
-
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.service.paymentBlockList, event.previousIndex, event.currentIndex);

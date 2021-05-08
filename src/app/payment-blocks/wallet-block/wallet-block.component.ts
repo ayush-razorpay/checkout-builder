@@ -5,35 +5,28 @@ import { BlockBuilderServiceService } from 'src/app/block-builder/block-builder-
 import { GetMethodsService } from 'src/app/data-services/get-methods.service';
 import { PaymentInstrument } from '../PaymentBlockModels';
 
-
-
 @Component({
-  selector: 'app-netbanking-block',
-  templateUrl: './netbanking-block.component.html',
-  styleUrls: ['./netbanking-block.component.css']
+  selector: 'app-wallet-block',
+  templateUrl: './wallet-block.component.html',
+  styleUrls: ['./wallet-block.component.css']
 })
-export class NetbankingBlockComponent extends PaymentInstrument implements OnInit {
+export class WalletBlockComponent extends PaymentInstrument implements OnInit {
+ 
+ 
   @Input() id : string ;
   constructor(private getPaymentMethods : GetMethodsService,
-    private blockBuilderServiceService:BlockBuilderServiceService) {
+     private blockBuilderServiceService : BlockBuilderServiceService) {
     super();
     this.form.valueChanges.subscribe(x=>{
       this.blockBuilderServiceService.updateSubcomponentChange(this.id,this.getConfJsob());
     })
-   }
-
-  issuerOptions = new Array();
-
-
-  ngOnInit(): void {
-
-    Object.keys(this.getPaymentMethods.fetchMethods().netbanking).forEach(k => {
-      this.issuerOptions.push({label: this.getPaymentMethods.fetchMethods().netbanking[k], value: k})
-
-    });
-
   }
-
+  walletOptions=new Array();
+  ngOnInit(): void {
+    Object.keys(this.getPaymentMethods.fetchMethods().wallet).forEach(k => {
+      this.walletOptions.push({label: k, value: k})  
+    });
+  }
   options: FormlyFormOptions = {
     formState: {
       disabled: true,
@@ -49,25 +42,26 @@ export class NetbankingBlockComponent extends PaymentInstrument implements OnIni
       fieldGroupClassName: "row",
       fieldGroup: [
     {
-      key: 'issuerAgree',
+      key: 'walletAgree',
       type: 'checkbox',
       defaultValue:true,
       templateOptions: {
-        label: 'All Issuers Enabled',
+        label: 'All Wallets Enabled',
         required: true,
         
       },
     },
     {
-      key: 'issuers',
+      className:"col-11",
+      key: 'wallets',
       type: 'select',
       templateOptions: {
-        label: 'Issuer',
+        label: 'Wallets',
         multiple: true,
-        options: this.issuerOptions
+        options: this.walletOptions
       },
       expressionProperties: {
-        'templateOptions.disabled': 'model.issuerAgree',
+        'templateOptions.disabled': 'model.walletAgree',
       },
     }]}
   ];
@@ -80,13 +74,14 @@ export class NetbankingBlockComponent extends PaymentInstrument implements OnIni
   public getConfJsob(): object {
   
    let toReturnObj = {
-    method : 'netbanking',
-    banks:  this.model.issuers,
+    method : 'wallet',
+    wallets:  this.model.wallets,
    };
   
    Object.keys(toReturnObj).forEach(key => toReturnObj[key] === undefined && delete toReturnObj[key])
   
       return toReturnObj;
     }
+
 
 }
