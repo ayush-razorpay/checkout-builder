@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
+import { BlockBuilderServiceService } from 'src/app/block-builder/block-builder-service.service';
 import { GetMethodsService } from 'src/app/data-services/get-methods.service';
 import { PaymentInstrument } from '../PaymentBlockModels';
 
@@ -13,9 +14,12 @@ import { PaymentInstrument } from '../PaymentBlockModels';
 })
 export class NetbankingBlockComponent extends PaymentInstrument implements OnInit {
 
-  constructor(private getPaymentMethods : GetMethodsService) {
+
+  constructor(private getPaymentMethods : GetMethodsService,private builderService : BlockBuilderServiceService) {
     super();
-   }
+    this.form.valueChanges.subscribe(x=>this.builderService.updateOnChnage(this.id,this.form.value))
+  }
+  @Input() id : string ;
 
   issuerOptions = new Array();
 

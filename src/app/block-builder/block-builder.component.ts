@@ -32,40 +32,36 @@ export class BlockBuilderComponent implements OnInit {
     this.service.paymentBlockList.push({ id: uuidv4(), type: type });
   }
 
-  getBlockConf() {
-    let temp = new Array();
+  // getBlockConf() {
+  //   let temp = new Array();
     
 
-    this.dynamicInsert.toArray().forEach((x) => temp.push(x.getConfJsob()));
+  //   this.dynamicInsert.toArray().forEach((x) => temp.push(x.getConfJsob()));
 
-    let var1 = {
+  //   let var1 = {
+  //       display: {
+  //         blocks: {
+  //           block1: {
+  //             name: "Primary Payment Methods",
+  //             instruments: temp
+  //           },
 
-        display: {
-          blocks: {
-            block1: {
-              name: "Ayush",
-              instruments: temp
-            },
-
-          },
-          sequence: [
-             "block.block1",
-            // "block.other"
-          ],
-          preferences: {
-            show_default_blocks: false
-          }
-        }
-    };
-    this.updateDemo(var1);
-    console.log("-----------------------------", var1);
-  }
+  //         },
+  //         sequence: [
+  //            "block.block1",
+  //         ],
+  //         preferences: {
+  //           show_default_blocks: false
+  //         }
+  //       }
+  //   };
+  //   this.updateDemo(var1);
+  //   console.log("-----------------------------", var1);
+  // }
 
   updateDemo(obj) {
     this.demoService.updateDemoComponentConfig(obj);
   }
-
-
 
 
   drop(event: CdkDragDrop<string[]>) {
