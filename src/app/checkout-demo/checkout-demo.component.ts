@@ -14,25 +14,16 @@ export class CheckoutDemoComponent implements OnInit {
   constructor(private sanitizer: DomSanitizer,
     private s:DemoServiceService,
     private changeRef : ChangeDetectorRef) { }
-  url="https://razorpay.com/";
+  url="https://i.gifer.com/AqA0.gif";
+  loading = false;
   ngOnInit(): void {
 
     this.s.getValue().subscribe((value) => {
-
-     
       this.url = value;
-  
-      console.log("value change detected");
-
-
-
     });
   }
 
 
-  //url='https://ayush-razorpay.github.io/ayush-razorpay/test.html?key=rzp_test_oJPbj9rC1rDGAQ&amount=1000&currency=INR&name=Acme%20Corp&description=Test%20Transaction&image=https://example.com/your_logo&prefill[name]=Gaurav%20Kumar&prefill[email]=gaurav.kumar@example.com&prefill[contact]=9999999999&notes[address]=Razorpay%20Corporate%20Office&theme[color]=#3399cc';
-
-  
 
 }
 

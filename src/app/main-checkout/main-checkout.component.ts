@@ -1,8 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { FormlyFieldConfig, FormlyFormOptions } from "@ngx-formly/core";
+import { BlockBuilderServiceService } from "../block-builder/block-builder-service.service";
 import { DemoServiceService } from "../checkout-demo/service/demo-service.service";
 import { GetMethodsService } from "../data-services/get-methods.service";
+import { debounceTime } from "rxjs/operators";
 
 @Component({
   selector: "app-main-checkout",
@@ -19,29 +21,31 @@ export class MainCheckoutComponent implements OnInit {
     { label: "Payment Link Id  ", value: "payment_link_id", id: 4 },
   ];
 
-  constructor(private demoCheckoutService: DemoServiceService, 
-    private getMethodsService : GetMethodsService) {}
+  constructor(
+    private demoCheckoutService: DemoServiceService,
+    private getMethodsService: GetMethodsService,
+  ) {}
 
-  
+  lastUpdated = new Date().valueOf();
+  changeCounter = 0;
+
   ngOnInit(): void {
-
-   this.model= this.demoCheckoutService.getconfigcheckoutMode();
+    this.model = this.demoCheckoutService.getconfigcheckoutConfig();
+    console.log("color --", this.model);
     this.model.color = this.model.theme.color;
-    this.form.valueChanges.subscribe((y) => {
+
+    this.form.valueChanges.pipe(debounceTime(3000)).subscribe((y) => {
       let x = JSON.parse(JSON.stringify(y));
-
-      x.theme = { color: x.color };
-      delete x["color"];
-      
-      this.getMethodsService.updateApiKey(y.key);
-      x.config =  this.model.config;      
-
-      this.demoCheckoutService.updateDemoComponent(x);
+      this.demoCheckoutService.updateTheme({ color: x.color });
+      this.demoCheckoutService.updateMainConfs(x);
+      this.demoCheckoutService.updateShow_default_blocksStatus(
+        this.model.showDefaultBlock
+      );
     });
   }
 
   form = new FormGroup({});
-  
+
   model;
   options: FormlyFormOptions = {};
 
@@ -53,7 +57,7 @@ export class MainCheckoutComponent implements OnInit {
           className: "col-4",
           type: "input",
           key: "key",
-          defaultValue: "rzp_test_oJPbj9rC1rDGAQ",
+          //defaultValue: "rzp_test_oJPbj9rC1rDGAQ",
           templateOptions: {
             label: "key",
             required: true,
@@ -188,7 +192,19 @@ export class MainCheckoutComponent implements OnInit {
             hideExpression: "!model.enableTimeout",
           },
         },
+        {
+          className: "col-4",
+          key: "showDefaultBlock",
+          type: "checkbox",
+          defaultValue: true,
+          templateOptions: {
+            label: "Show Default Blocks",
+          },
+        },
       ],
     },
   ];
+}
+function delay(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }

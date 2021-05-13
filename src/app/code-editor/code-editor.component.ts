@@ -27,7 +27,7 @@ export class CodeEditorComponent implements OnInit {
     this.aceEditor = ace.edit(this.editor.nativeElement);
     this.aceEditor.setTheme("ace/theme/twilight"); 
 
-    let var1 = this.demoService.configcheckoutObject;
+    let var1 = this.demoService.getconfigcheckoutConfig();
     this.toPatch = {
       "tnxType": var1.tnxType,
       "tnx_id": var1.tnx_id,
@@ -39,7 +39,7 @@ export class CodeEditorComponent implements OnInit {
     delete var1['enableTimeout'];
 
     this.aceEditor.session.setValue(
-      JSON.stringify(this.demoService.configcheckoutObject,null,'\t')
+      JSON.stringify(this.demoService.getconfigcheckoutConfig(),null,'\t')
     );
  
 
@@ -56,7 +56,7 @@ export class CodeEditorComponent implements OnInit {
         if (this.IsJsonString(this.aceEditor.getValue()) == true){
 
           let toSet ={...this.toPatch,  ...JSON.parse(this.aceEditor.getValue()) };
-        this.demoService.updateTheConfigJson(toSet);
+       this.demoService.replaceFullConfigJson(toSet);
         }
       }
   });

@@ -24,27 +24,10 @@ export class BlockBuilderServiceService {
       }
     }
       this.paymentsConfigList[index] = conf;
-
-    
-
-      let var1 = {
-        display: {
-          blocks: {
-            block1: {
-              name: "Payment Methods",
-              instruments: this.paymentsConfigList,
-            },
-          },
-          sequence: [
-            "block.block1",
-          ],
-          preferences: {
-            show_default_blocks: false,
-          },
-        },
-      };
     
     console.log("change for id : ", id, "index - ", index);
-    this.demoCheckoutService.updateDemoComponentConfig(var1);
+this.demoCheckoutService.updateConfigBlockList(this.paymentsConfigList);
   }
+
+
 }

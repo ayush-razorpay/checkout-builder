@@ -69,7 +69,9 @@ export class BlockBuilderComponent implements AfterViewInit {
   }
 
   updateDemo(obj) {
-    this.demoService.updateDemoComponentConfig(obj);
+    
+    
+   // this.demoService.updateDemoComponentConfig(obj);
   }
 
   drop(event: CdkDragDrop<string[]>) {
