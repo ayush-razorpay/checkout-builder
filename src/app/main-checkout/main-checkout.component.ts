@@ -26,8 +26,7 @@ export class MainCheckoutComponent implements OnInit {
     private getMethodsService: GetMethodsService,
   ) {}
 
-  lastUpdated = new Date().valueOf();
-  changeCounter = 0;
+ 
 
   ngOnInit(): void {
     this.model = this.demoCheckoutService.getconfigcheckoutConfig();
@@ -41,6 +40,7 @@ export class MainCheckoutComponent implements OnInit {
       this.demoCheckoutService.updateShow_default_blocksStatus(
         this.model.showDefaultBlock
       );
+
     });
   }
 

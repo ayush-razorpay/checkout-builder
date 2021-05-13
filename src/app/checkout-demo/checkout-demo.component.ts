@@ -14,7 +14,7 @@ export class CheckoutDemoComponent implements OnInit {
   constructor(private sanitizer: DomSanitizer,
     private s:DemoServiceService,
     private changeRef : ChangeDetectorRef) { }
-  url="https://i.gifer.com/AqA0.gif";
+  url="";
   loading = false;
   ngOnInit(): void {
 
