@@ -24,7 +24,7 @@
   </div>
 
   <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-    <div *ngFor="let paymentBlock of service.paymentBlockList" cdkDrag>
+    <div *ngFor="let paymentBlock of service.paymentsConfigList" cdkDrag>
       <app-payment-block
         #dynamicInsert
         type="{{ paymentBlock.type }}"

@@ -33,7 +33,7 @@ export class MainCheckoutComponent implements OnInit {
     console.log("color --", this.model);
     this.model.color = this.model.theme.color;
 
-    this.form.valueChanges.pipe(debounceTime(3000)).subscribe((y) => {
+    this.form.valueChanges.subscribe((y) => {
       let x = JSON.parse(JSON.stringify(y));
       this.demoCheckoutService.updateTheme({ color: x.color });
       this.demoCheckoutService.updateMainConfs(x);

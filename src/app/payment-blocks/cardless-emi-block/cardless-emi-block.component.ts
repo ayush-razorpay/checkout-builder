@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { FormlyFieldConfig } from '@ngx-formly/core';
 import { BlockBuilderServiceService } from 'src/app/block-builder/block-builder-service.service';
 import { GetMethodsService } from 'src/app/data-services/get-methods.service';
 import { PaymentInstrument } from '../PaymentBlockModels';
@@ -12,28 +11,20 @@ import { PaymentInstrument } from '../PaymentBlockModels';
 })
 export class CardlessEmiBlockComponent extends PaymentInstrument implements OnInit {
 
-  @Input() id : string ;
-  constructor(private getPaymentMethods : GetMethodsService,
-    private blockBuilderServiceService : BlockBuilderServiceService) {
-    super();
-    this.form.valueChanges.subscribe(x=>{
-      this.blockBuilderServiceService.updateSubcomponentChange(this.id,this.getConfJsob());
-    })
-  }
+  constructor(private getPaymentMethods : GetMethodsService, 
+    cdRef : ChangeDetectorRef ,
+    blockBuilderServiceService:BlockBuilderServiceService) { 
+   super(blockBuilderServiceService,cdRef);
+       
+
+ }
+
   cardlessOptions=new Array();
   ngOnInit(): void {
     Object.keys(this.getPaymentMethods.fetchMethods().cardless_emi).forEach(k => {
       this.cardlessOptions.push({label: k, value: k})  
     });
   }
-  options: FormlyFormOptions = {
-    formState: {
-      disabled: true,
-    },
-  };
-
-  form = new FormGroup({});
-  model:any = {};
 
   fields: FormlyFieldConfig[] = [
     {
@@ -66,19 +57,15 @@ export class CardlessEmiBlockComponent extends PaymentInstrument implements OnIn
   ];
 
 
-  toggleDisabled() {
-    this.options.formState.disabled = !this.options.formState.disabled;
-  }
-
-  public getConfJsob(): object {
+  public getConf(): object {
   
    let toReturnObj = {
     method : 'cardless_emi',
     wallets:  this.model.cardlessemi,
+   // model:JSON.parse(JSON.stringify(this.model))
    };
   
-   Object.keys(toReturnObj).forEach(key => toReturnObj[key] === undefined && delete toReturnObj[key])
-  
+ //  Object.keys(toReturnObj).forEach(key => toReturnObj[key] === undefined && delete toReturnObj[key])
       return toReturnObj;
     }
 

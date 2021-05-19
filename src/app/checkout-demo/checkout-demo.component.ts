@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer } from "@angular/platform-browser";
+import { debounceTime } from 'rxjs/operators';
 import { DemoServiceService } from './service/demo-service.service';
 
 
@@ -18,7 +19,7 @@ export class CheckoutDemoComponent implements OnInit {
   loading = false;
   ngOnInit(): void {
 
-    this.s.getValue().subscribe((value) => {
+    this.s.getValue().pipe(debounceTime(3000)).subscribe((value) => {
       this.url = value;
     });
   }

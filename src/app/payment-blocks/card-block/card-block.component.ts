@@ -1,59 +1,46 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { AfterViewInit } from '@angular/core';
+import { Component,OnInit,ChangeDetectorRef } from '@angular/core';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { BlockBuilderServiceService } from 'src/app/block-builder/block-builder-service.service';
 import { GetMethodsService } from 'src/app/data-services/get-methods.service';
 import { PaymentInstrument } from '../PaymentBlockModels';
+
 
 @Component({
   selector: 'app-card-block',
   templateUrl: './card-block.component.html',
   styleUrls: ['./card-block.component.css']
 })
-export class CardBlockComponent extends PaymentInstrument implements OnInit {
+export class CardBlockComponent extends PaymentInstrument implements OnInit, AfterViewInit {
+
+
 
   constructor(private getPaymentMethods : GetMethodsService, 
-    private blockBuilderServiceService:BlockBuilderServiceService) { 
-    super();
-    
-    this.form.valueChanges.subscribe(x=>{
-      this.blockBuilderServiceService.updateSubcomponentChange(this.id,this.getConfJsob());
-    })
+     cdRef : ChangeDetectorRef ,
+     blockBuilderServiceService:BlockBuilderServiceService) { 
+    super(blockBuilderServiceService,cdRef);
   }
+ 
   
-
-  @Input() id : string ;
   networkOptions = new Array();
   issuerOptions = new Array();
 
   ngOnInit(): void {
     Object.keys(this.getPaymentMethods.fetchMethods().card_networks).forEach(k => {
-     
       if(this.getPaymentMethods.fetchMethods().card_networks[k] != 0)
       {
-     
       this.networkOptions.push({label: k, value: k})
-
       }
     });
-
     Object.keys(this.getPaymentMethods.fetchMethods().netbanking).forEach(k => {
       this.issuerOptions.push({label: this.getPaymentMethods.fetchMethods().netbanking[k], value: k})
 
     });
-
-
   }
 
   
-  options: FormlyFormOptions = {
-    formState: {
-      disabled: true,
-    },
-  };
 
-  form = new FormGroup({});
-  model:any = {};
+
 
   fields: FormlyFieldConfig[] = [
     {
@@ -121,7 +108,6 @@ export class CardBlockComponent extends PaymentInstrument implements OnInit {
         
       },
     },
-    
     {
       className: 'col-6',
       key: 'types',
@@ -139,21 +125,23 @@ export class CardBlockComponent extends PaymentInstrument implements OnInit {
   ];
 
 
-  toggleDisabled() {
-    this.options.formState.disabled = !this.options.formState.disabled;
+
+
+  getConf(): object {
+    let toReturnObj = {
+      method : 'card',
+      issuers:  this.model.issuers,
+      networks: this.model.networks,
+      types:this.model.types,
+   //   model:JSON.parse(JSON.stringify(this.model))
+     };
+     return toReturnObj;
   }
 
+//  public getConfJsob(): object {
 
- public getConfJsob(): object {
- let toReturnObj = {
-  method : 'card',
-  issuers:  this.model.issuers,
-  networks: this.model.networks,
-  types:this.model.types,
- };
 
- Object.keys(toReturnObj).forEach(key => toReturnObj[key] === undefined && delete toReturnObj[key])
-
-    return toReturnObj;
-  }
+//  Object.keys(toReturnObj).forEach(key => toReturnObj[key] === undefined && delete toReturnObj[key])
+//     return toReturnObj;
+//   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { BlockBuilderServiceService } from 'src/app/block-builder/block-builder-service.service';
@@ -11,28 +11,21 @@ import { PaymentInstrument } from '../PaymentBlockModels';
   styleUrls: ['./paylater-block.component.css']
 })
 export class PaylaterBlockComponent extends PaymentInstrument implements OnInit {
-  @Input() id : string ;
-  constructor(private getPaymentMethods : GetMethodsService,
-    private blockBuilderServiceService : BlockBuilderServiceService) {
-    super();
-    this.form.valueChanges.subscribe(x=>{
-      this.blockBuilderServiceService.updateSubcomponentChange(this.id,this.getConfJsob());
-    })
-  }
+  constructor(private getPaymentMethods : GetMethodsService, 
+    cdRef : ChangeDetectorRef ,
+    blockBuilderServiceService:BlockBuilderServiceService) { 
+   super(blockBuilderServiceService,cdRef);
+      
+ }
+
   paylaterOptions=new Array();
   ngOnInit(): void {
     Object.keys(this.getPaymentMethods.fetchMethods().paylater).forEach(k => {
       this.paylaterOptions.push({label: k, value: k})  
     });
   }
-  options: FormlyFormOptions = {
-    formState: {
-      disabled: true,
-    },
-  };
 
-  form = new FormGroup({});
-  model:any = {};
+
 
   fields: FormlyFieldConfig[] = [
     {
@@ -65,18 +58,15 @@ export class PaylaterBlockComponent extends PaymentInstrument implements OnInit 
   ];
 
 
-  toggleDisabled() {
-    this.options.formState.disabled = !this.options.formState.disabled;
-  }
-
-  public getConfJsob(): object {
+  public getConf(): object {
   
    let toReturnObj = {
     method : 'paylater',
     providers:  this.model.paylater,
+   // model:JSON.parse(JSON.stringify(this.model))
    };
   
-   Object.keys(toReturnObj).forEach(key => toReturnObj[key] === undefined && delete toReturnObj[key])
+   //Object.keys(toReturnObj).forEach(key => toReturnObj[key] === undefined && delete toReturnObj[key])
   
       return toReturnObj;
     }

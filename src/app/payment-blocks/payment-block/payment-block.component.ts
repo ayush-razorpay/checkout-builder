@@ -8,13 +8,13 @@ import { PaymentInstrument } from '../PaymentBlockModels';
   templateUrl: './payment-block.component.html',
   styleUrls: ['./payment-block.component.css']
 })
-export class PaymentBlockComponent extends PaymentInstrument implements OnInit {
+export class PaymentBlockComponent  implements OnInit {
 
 
   @ViewChild('dynamicSubBlock') dynamicSubBlock: PaymentInstrument;
 
   constructor(private blockBuilderService:BlockBuilderServiceService) {
-    super();
+
    }
 
 
@@ -40,4 +40,6 @@ export class PaymentBlockComponent extends PaymentInstrument implements OnInit {
    return this.dynamicSubBlock.getConfJsob();
 
   }
+
+  patchConfigJson
 }
