@@ -1,10 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { FormlyFieldConfig, FormlyFormOptions } from "@ngx-formly/core";
-import { BlockBuilderServiceService } from "../block-builder/block-builder-service.service";
 import { DemoServiceService } from "../checkout-demo/service/demo-service.service";
 import { GetMethodsService } from "../data-services/get-methods.service";
-import { debounceTime } from "rxjs/operators";
+
 
 @Component({
   selector: "app-main-checkout",
@@ -23,25 +22,45 @@ export class MainCheckoutComponent implements OnInit {
 
   constructor(
     private demoCheckoutService: DemoServiceService,
-    private getMethodsService: GetMethodsService,
+    private getMethodsService: GetMethodsService
   ) {}
 
- 
+  key;
 
   ngOnInit(): void {
     this.model = this.demoCheckoutService.getconfigcheckoutConfig();
     console.log("color --", this.model);
     this.model.color = this.model.theme.color;
+    this.key = this.model.key;
 
     this.form.valueChanges.subscribe((y) => {
       let x = JSON.parse(JSON.stringify(y));
-      this.demoCheckoutService.updateTheme({ color: x.color });
-      this.demoCheckoutService.updateMainConfs(x);
-      this.demoCheckoutService.updateShow_default_blocksStatus(
-        this.model.showDefaultBlock
-      );
 
+      if (this.key != x.key) {
+        this.key = x.key;
+
+        this.getMethodsService
+          .changeApiKey(this.key)
+          .then(function (res) {
+            this.publishChanges(x);
+          })
+          .catch(function (err) {
+
+            console.log('Failed to update key. error :  '+ err)
+          });
+
+      } else {
+        this.publishChanges(x);
+      }
     });
+  }
+
+  publishChanges(x) {
+    this.demoCheckoutService.updateTheme({ color: x.color });
+    this.demoCheckoutService.updateMainConfs(x);
+    this.demoCheckoutService.updateShow_default_blocksStatus(
+      this.model.showDefaultBlock
+    );
   }
 
   form = new FormGroup({});
@@ -57,7 +76,6 @@ export class MainCheckoutComponent implements OnInit {
           className: "col-4",
           type: "input",
           key: "key",
-          //defaultValue: "rzp_test_oJPbj9rC1rDGAQ",
           templateOptions: {
             label: "key",
             required: true,
