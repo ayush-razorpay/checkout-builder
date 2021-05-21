@@ -29,9 +29,12 @@ export class GetMethodsService {
       }
 
       else{
+       
+       // let serviceUrl = 'http://localhost:8882/paymentMethods/';
+        let serviceUrl = 'https://floating-woodland-30144.herokuapp.com/paymentMethods/';
       // const promise = this.httpClient.get('https://'+key+'@api.razorpay.com/v1/methods').toPromise();
       const promise = this.httpClient
-        .get("http://localhost:8882/paymentMethods/" + btoa(key + ":"))
+        .get(serviceUrl + btoa(key + ":"))
         .toPromise();
       promise
         .then((data:any) => {
