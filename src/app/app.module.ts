@@ -26,7 +26,7 @@ import { CardlessEmiBlockComponent } from './payment-blocks/cardless-emi-block/c
 import { PaylaterBlockComponent } from './payment-blocks/paylater-block/paylater-block.component';
 import { CodeEditorModule } from '@ngstack/code-editor';
 import { CodeEditorComponent } from './code-editor/code-editor.component';
-
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 import { AdditionalConfigComponent } from './additional-config/additional-config.component';
@@ -72,7 +72,8 @@ import { AdditionalConfigComponent } from './additional-config/additional-config
         { name: 'colorPicker', component: FormlyFieldInput },
       ]
     }),
-    CodeEditorModule.forRoot()    
+    CodeEditorModule.forRoot(),
+    MatSnackBarModule    
   ],
   providers: [DemoServiceService],
   bootstrap: [AppComponent]
