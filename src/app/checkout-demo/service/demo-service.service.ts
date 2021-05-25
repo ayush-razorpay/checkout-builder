@@ -95,7 +95,10 @@ export class DemoServiceService {
     this.show_default_blocksStatus=status;
     this.updateUrl();
   }
-
+  updateHide(list){
+    this.config.display.hide=list;
+    this.updateUrl();
+  }
 
 
   updateUrl(){
