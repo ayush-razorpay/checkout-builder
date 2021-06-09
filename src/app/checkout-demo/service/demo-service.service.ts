@@ -15,6 +15,7 @@ export class DemoServiceService {
     if(this.theme.color == undefined) {this.theme.color =this.getRandomColor() ; }
 
     toReturn.theme = this.theme;
+    toReturn.prefill=this.prefill;
 
     return toReturn;
   }
@@ -22,12 +23,10 @@ export class DemoServiceService {
 
   show_default_blocksStatus = true;
   checkoutConfig  = {
-    key: "rzp_live_uq7S4xKWHoMLLt", // Enter the Key ID generated from the Dashboard
+    key: "rzp_test_oJPbj9rC1rDGAQ", // Enter the Key ID generated from the Dashboard
     amount: "100",
     currency: "INR",
     tnxType: "order_id",
-    
-
   };
 
   config = {
@@ -54,8 +53,8 @@ export class DemoServiceService {
   };
 
   prefill = {
-      email: "gaurav.kumar@example.com",
-      contact: +919900000000,
+      email: "abc@example.com",
+      contact: 9123456781,
   };
   
   theme :  any = {} ;
@@ -95,7 +94,10 @@ export class DemoServiceService {
     this.show_default_blocksStatus=status;
     this.updateUrl();
   }
-
+  updateHide(list){
+    this.config.display.hide=list;
+    this.updateUrl();
+  }
 
 
   updateUrl(){
@@ -104,6 +106,7 @@ export class DemoServiceService {
     conf.display.preferences.show_default_blocks = var1.showDefaultBlock;
     var1.config = conf;
     var1.theme = this.theme;
+    var1.prefill=this.prefill;
     let x=  JSON.stringify(var1)
     let checkoutUrl='https://ayush-razorpay.github.io/ayush-razorpay/test.html?'+'request_identifier='+Math.random()+'&data='+encodeURI(x);
     this.setValue(checkoutUrl);
@@ -127,6 +130,17 @@ export class DemoServiceService {
       color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
+  }
+
+
+  getPrefill(){
+    return this.prefill;
+  }
+
+  updatePrefill(email,contact){
+    this.prefill.contact=contact;
+    this.prefill.email=email;
+    this. updateUrl();
   }
 
 }
