@@ -1,0 +1,62 @@
+name: Deploy
+
+on: deployment
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: [self-hosted]
+    steps:
+      - name: Checkout Codebase
+        uses: actions/checkout@v2
+
+      - name: Use Node v14-alpine3.10
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14-alpine3.10
+
+      # Download artifacts from Github actions cache
+      - name: Configure AWS credentials For downloading the artifacts from cache
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.ACTIONS_CACHE_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.ACTIONS_CACHE_AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{secrets.ACTIONS_CACHE_AWS_REGION}}
+
+      - name: Download artifacts from cache
+        run: |
+          aws s3 ls s3://rzp-actions-cache/checkout-builder
+          if [[ $? -ne 0 ]]; then
+            echo "Folder does not exist"
+            exit 1
+          fi
+          aws s3 cp s3://rzp-actions-cache/checkout-builder dist --recursive
+
+      # Upload artifacts to production AWS bucket
+
+      - name: Configure AWS Credentials for pushing to prod deployment bucket'
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.PROD_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.PROD_AWS_ACCESS_SECRET }}
+          aws-region: 'ap-south-1'
+
+      - name: Prod deploy
+        run: |
+          aws s3 sync --acl public-read dist/ s3://checkout-live/checkout-builder/ --metadata-directive REPLACE --cache-control max-age=0,no-cache,no-store,must-revalidate --acl public-read
+        env:
+          AWS_ACCESS_KEY: ${{ secrets.PROD_AWS_ACCESS_KEY_ID }}
+          AWS_ACCESS_SECRET: ${{ secrets.PROD_AWS_ACCESS_KEY_ID }}
+          AWS_REGION: 'ap-south-1'
+
+      - name: Mark Deployment Success on GitHub
+        if: ${{ success() }}
+        run: |
+          curl --location --request POST 'https://api.github.com/repos/razorpay/checkout-builder/deployments/${{ github.event.deployment.id }}/statuses' \
+          --header 'Authorization: token ${{ github.token }}' \
+          --header 'Accept: application/vnd.github.everest-preview+json' \
+          --header 'Content-Type: application/json' \
+          --data-raw '{
+              "environment": "staging",
+              "state": "success"
+            }'
