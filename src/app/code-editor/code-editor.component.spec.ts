@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ToggelSwitchComponent } from './toggel-switch.component';
+import { CodeEditorComponent } from './code-editor.component';
 
-describe('ToggelSwitchComponent', () => {
-  let component: ToggelSwitchComponent;
-  let fixture: ComponentFixture<ToggelSwitchComponent>;
+describe('CodeEditorComponent', () => {
+  let component: CodeEditorComponent;
+  let fixture: ComponentFixture<CodeEditorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ToggelSwitchComponent ]
+      declarations: [ CodeEditorComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ToggelSwitchComponent);
+    fixture = TestBed.createComponent(CodeEditorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

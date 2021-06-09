@@ -1,77 +1,194 @@
-import { QueryList, ViewChildren } from '@angular/core';
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { DemoServiceService } from '../checkout-demo/service/demo-service.service';
-import { CheckoutModelTheme } from '../model/CheckoutModalTheme';
-import { RzpCheckout } from '../model/RzpCheckout';
-import { ToggelSwitchComponent } from '../toggel-switch/toggel-switch.component';
-
+import { Component, OnInit } from "@angular/core";
+import { FormGroup } from "@angular/forms";
+import { FormlyFieldConfig, FormlyFormOptions } from "@ngx-formly/core";
+import { DemoServiceService } from "../checkout-demo/service/demo-service.service";
+import { GetMethodsService } from "../data-services/get-methods.service";
 
 @Component({
-  selector: 'app-main-checkout',
-  templateUrl: './main-checkout.component.html',
-  styleUrls: ['./main-checkout.component.css']
+  selector: "app-main-checkout",
+  templateUrl: "./main-checkout.component.html",
+  styleUrls: ["./main-checkout.component.css"],
 })
 export class MainCheckoutComponent implements OnInit {
+  txnIdType = "";
 
-  constructor(private demoServiceService:DemoServiceService) { }
+  tnxTypes = [
+    { label: "Order Id  ", value: "order_id", id: 1 },
+    { label: "Subscription Id  ", value: "subscription_id", id: 2 },
+    { label: "Invoice Id  ", value: "invoice_id", id: 3 },
+    { label: "Payment Link Id  ", value: "payment_link_id", id: 4 },
+  ];
 
-  entityType : string;
+  constructor(private demoCheckoutService: DemoServiceService, 
+    private getMethodsService : GetMethodsService) {}
 
+  
   ngOnInit(): void {
 
-    let rzpCheckout : RzpCheckout;
-    this.mainForm.valueChanges.subscribe(() => {
+   this.model= this.demoCheckoutService.getconfigcheckoutMode();
+    this.model.color = this.model.theme.color;
+    this.form.valueChanges.subscribe((y) => {
+      let x = JSON.parse(JSON.stringify(y));
 
-      rzpCheckout = this.mainForm.value;
-
-      this.entityType=rzpCheckout.entityType;
-
-      let x : CheckoutModelTheme = new CheckoutModelTheme() ;
-
-      x.color=rzpCheckout.color;
-
+      x.theme = { color: x.color };
+      delete x["color"];
       
+      this.getMethodsService.updateApiKey(y.key);
+      x.config =  this.model.config;      
 
-      rzpCheckout.theme=x;
-      console.log(rzpCheckout);
-      if(rzpCheckout != null)
-      {
-     
-       let var1= RzpCheckout.pack(rzpCheckout);
-      this.demoServiceService.updateDemoComponent(var1);
-
-      }
+      this.demoCheckoutService.updateDemoComponent(x);
     });
-
   }
-  color = '#76988d';
-  active = 1;
 
-  @ViewChildren(ToggelSwitchComponent) private toogelSwitchList: QueryList<ToggelSwitchComponent>;
- 
-  model : RzpCheckout = new RzpCheckout();
-
-  mainForm = new FormGroup({
-
-    key : new FormControl('rzp_test_oJPbj9rC1rDGAQ'),
-    image : new FormControl('https://s24402.pcdn.co/wp-content/uploads/2020/03/Razorpay.jpg'),
-    amount:new FormControl('100'),
-    currency : new FormControl('INR'),
-    name: new FormControl(''),
-    notes : new FormControl(''),
-    entityType:new FormControl(''),
-    entityId:new FormControl(''),
-    color:new FormControl(''),
-    callback_url:new FormControl(''),
-    timeout:new FormControl(''),
-    description:new FormControl(''),
-    retry: new FormControl(''),
-    nativeOtp:new FormControl(''),
-    personalization:new FormControl(''),
-    recurringPaytm:new FormControl(''),
-    remeberCustomer:new FormControl(''),
+  form = new FormGroup({});
   
-  });
+  model;
+  options: FormlyFormOptions = {};
 
+  fields: FormlyFieldConfig[] = [
+    {
+      fieldGroupClassName: "row",
+      fieldGroup: [
+        {
+          className: "col-4",
+          type: "input",
+          key: "key",
+          defaultValue: "rzp_test_oJPbj9rC1rDGAQ",
+          templateOptions: {
+            label: "key",
+            required: true,
+          },
+        },
+        {
+          className: "col-4",
+          type: "input",
+          key: "currency",
+          defaultValue: "INR",
+          templateOptions: {
+            label: "currency",
+            required: true,
+          },
+        },
+        {
+          className: "col-4",
+          type: "input",
+          key: "image",
+          templateOptions: {
+            label: "Checkout Brand logo",
+          },
+        },
+        {
+          className: "col-4",
+          type: "input",
+          key: "name",
+          templateOptions: {
+            label: "name",
+          },
+        },
+        {
+          className: "col-4",
+          key: "color",
+          type: "colorPicker",
+          templateOptions: {
+            label: "Checkout Theme Color",
+          },
+        },
+        {
+          className: "col-4",
+          type: "input",
+          key: "description",
+          templateOptions: {
+            label: "description",
+          },
+        },
+        {
+          className: "col-4",
+          type: "input",
+          key: "amount",
+          defaultValue: 100,
+          templateOptions: {
+            label: "amount (1 INR = 100 )",
+            required: true,
+            type: "number",
+            min: 100,
+          },
+        },
+        {
+          className: "col-4",
+          type: "input",
+          key: "notes",
+          templateOptions: {
+            label: "notes",
+          },
+        },
+        {
+          className: "col-4",
+          key: "tnxType",
+          type: "select",
+          templateOptions: {
+            label: "Transtion id type",
+            options: this.tnxTypes,
+            valueProp: (o) => o.value,
+            compareWith: (o1, o2) => o1 === o2,
+          },
+        },
+        {
+          className: "col-4",
+          type: "input",
+          key: "tnx_id",
+          templateOptions: {
+            label: this.txnIdType,
+          },
+          expressionProperties: {
+            "templateOptions.label": "model.tnxType",
+            hideExpression: "(!model.tnxType)",
+          },
+        },
+        {
+          className: "col-4",
+          key: "retry",
+          type: "checkbox",
+          defaultValue: true,
+          templateOptions: {
+            label: "Retry Enabled",
+          },
+        },
+        {
+          className: "col-4",
+          type: "input",
+          key: "max_count",
+          defaultValue: "3",
+          templateOptions: {
+            label: "Max retry attempt count",
+            type: "number",
+          },
+          expressionProperties: {
+            hideExpression: "!model.retry",
+          },
+        },
+        {
+          className: "col-4",
+          key: "enableTimeout",
+          type: "checkbox",
+          defaultValue: false,
+          templateOptions: {
+            label: "Timeout Enabled",
+          },
+        },
+        {
+          className: "col-4",
+          type: "input",
+          key: "timeout",
+          defaultValue: 60,
+          templateOptions: {
+            label: "Timeout in seconds",
+            type: "number",
+          },
+          expressionProperties: {
+            hideExpression: "!model.enableTimeout",
+          },
+        },
+      ],
+    },
+  ];
 }
