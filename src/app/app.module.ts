@@ -27,8 +27,6 @@ import { PaylaterBlockComponent } from './payment-blocks/paylater-block/paylater
 import { CodeEditorModule } from '@ngstack/code-editor';
 import { CodeEditorComponent } from './code-editor/code-editor.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-
-
 import { AdditionalConfigComponent } from './additional-config/additional-config.component';
 
 

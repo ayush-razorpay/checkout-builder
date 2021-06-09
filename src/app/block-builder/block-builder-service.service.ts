@@ -60,6 +60,7 @@ export class BlockBuilderServiceService {
       "-------",
       this.paymentsConfigList
     );
+
     if (index != undefined) return this.paymentsConfigList[index].config;
     else return null;
   }

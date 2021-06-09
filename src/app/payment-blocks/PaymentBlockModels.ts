@@ -56,6 +56,10 @@ export abstract class PaymentInstrument implements AfterViewInit {
         this.getConfJsob()
       );
     });
+
+    this.blockBuilderServiceService.updateSubcomponentChange(
+      this.id,
+      this.getConfJsob());
   }
 
   toggleDisabled() {
